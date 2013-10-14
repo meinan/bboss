@@ -1,0 +1,426 @@
+﻿#######update function list since bbossgroups-3.2 begin###########
+o 淇ResponseBody鎸囧畾鏁版嵁杩斿洖绫诲瀷鍜屽瓧绗﹂泦涓嶇敓鏁堢殑闂
+************************************************bbossgroups-3.2******************************
+------2011-06-10------------
+o 淇SQLExecutor涓硾鍨嬪瓧娈垫煡璇PI涓殑绫诲瀷杞崲婕忔礊
+------2011-06-09------------
+o 澶勭悊绌哄瓧绗︿覆鍚戞棩鏈熺被鍨嬭浆鎹㈠悗鍙版姤寮傚父鐨勭己闄?
+------2011-06-09------------
+o 娉ㄨВ鎺у埗鍣ㄥ彲浠ヤ笉鐢ㄦ坊鍔犳敞瑙Controller涔熷彲浠ヨ妗嗘灦璇嗗埆浜?
+------2011-06-8------------
+o 淇涓嶆甯哥殑鎻愮ず淇℃伅锛宔xternaljndiName
+o 淇鍙厤缃閮ㄦ暟鎹簮鐨勬儏鍐典笅锛宲ool鍚姩鍫嗘爤婧㈠嚭闂
+    java.lang.StackOverflowError
+	at java.lang.Thread.currentThread(Native Method)
+	at org.apache.xerces.util.SecuritySupport12$1.run(Unknown Source)
+	at java.security.AccessController.doPrivileged(Native Method)
+	at org.apache.xerces.util.SecuritySupport12.getContextClassLoader(Unknown Source)
+	at org.apache.xerces.util.ObjectFactory.findClassLoader(Unknown Source)
+	at org.apache.xerces.impl.dv.DTDDVFactory.getInstance(Unknown Source)
+	at org.apache.xerces.impl.dv.DTDDVFactory.getInstance(Unknown Source)
+	at 
+	淇敼绋嬪簭娓呭崟锛?
+	com.frameworkset.common.poolman.sql.PoolMan
+	com.frameworkset.common.poolman.util.JDBCPool
+	com.frameworkset.common.poolman.util.SQLManager
+	com.frameworkset.common.poolman.util.SQLUtil
+	 	public static JDBCPool getJDBCPoolByJNDIName(String jndiname)
+        {
+            JDBCPool pool = SQLUtil.getSQLManager().getPoolByJNDIName(jndiname,true);
+            return pool;
+        }
+        
+        public static JDBCPool getJDBCPoolByJNDIName(String jndiname,boolean needcheckStart)
+        {
+            JDBCPool pool = SQLUtil.getSQLManager().getPoolByJNDIName(jndiname,needcheckStart);
+            return pool;
+        }
+
+------2011-06-06------------
+o 瀹屽杽responsebody娉ㄨВ鍔熻兘,澧炲姞datatype鍜宑harset涓や釜灞炴€?
+datatype锛歫son,xml绛夊€硷紝鐢ㄦ潵鎸囧嚭杈撳嚭鏁版嵁鐨刢ontent绫诲瀷
+charset锛氱敤鏉ユ寚鍑簉eponse鍝嶅簲瀛楃缂栫爜
+璇︾粏浣跨敤鏂规硶璇峰弬鑰冩祴璇曠敤渚?
+org.frameworkset.web.enumtest.EnumConvertController
+org.frameworkset.web.http.converter.json.JsonController
+------2011-06-04------------
+o 閫昏緫鏍囩鍙互鐙珛浜巐ist鍜宐eaninfo鏍囩浣跨敤,澧炲姞浠ヤ笅灞炴€э細
+		<attribute>
+			<name>requestKey</name>
+			<rtexprvalue>true</rtexprvalue>
+		</attribute>
+		<attribute>
+			<name>sessionKey</name>
+			<rtexprvalue>true</rtexprvalue>
+		</attribute>
+		<attribute>
+			<name>pageContextKey</name>
+			<rtexprvalue>true</rtexprvalue>
+		</attribute>
+		<attribute>
+			<name>parameter</name>
+			<rtexprvalue>true</rtexprvalue>
+		</attribute>
+		<attribute>
+			<name>actual</name>
+			<rtexprvalue>true</rtexprvalue>
+		</attribute>
+閫氳繃浠ヤ笂灞炴€э紝鍙互鏂逛究鍦板埗瀹氶€昏緫鏍囩鐨勬湡鏈涘€硷紝
+requestKey锛氭寚瀹氫粠request鐨刟ttribute灞炴€т腑鑾峰彇瀹為檯鍊硷紝
+sessionKey锛氭寚瀹氫粠session鐨刟ttribute灞炴€т腑鑾峰彇瀹為檯鍊硷紝
+pageContextKey锛氭寚瀹氫粠pageContext鐨刟ttribute灞炴€т腑鑾峰彇瀹為檯鍊硷紝
+parameter:鎸囧畾浠巖equest鐨刾arameter涓幏鍙栧疄闄呭€?
+actual:鐩存帴鎸囧畾瀹為檯鍊硷紝鍙互鏄叿浣撶殑鍊硷紝涔熷彲浠ユ槸涓€涓猠l鍙橀噺
+涓婅堪灞炴€ц繕鍙互鍜宲roperty灞炴€х粨鍚堣捣鏉ヨ幏鍙栧€煎璞′腑鐨勫睘鎬у€?
+------2011-06-04------------
+o request鍜宻ession鏍囩澧炲姞鏃ユ湡dateformat鏍煎紡灞炴€?
+
+------2011-06-03------------
+o 淇config鏍囩enablecontextmenu灞炴€т笉鑳芥甯稿伐浣滅殑婕忔礊
+------2011-06-2------------
+o 淇浣跨敤Column娉ㄨВ璁剧疆瀵硅薄灞炴€т笌鍒楀悕鏄犲皠鏃讹紝瀵艰嚧sql璇彞涓粦瀹氱浉搴旂殑灞炴€у彉閲忓€煎け璐ョ殑婕忔礊
+
+------2011-05-28-----------
+o 淇quartz寮曟搸鍔犺浇甯﹀弬鏁版柟娉曚换鍔℃椂锛屽悗鍙版姏绌烘寚閽堝紓甯革紝杩欐槸3.1鐗堟湰浜х敓鐨勬柊闂锛屽奖鍝嶆柊
+ 鐗堟湰鐨勪娇鐢?
+o 瀹屽杽浠诲姟璋冨害绠＄悊缁勪欢org.frameworkset.task.TaskService
+瀹屽杽stopService鏂规硶鍜宻tartService鏂规硶锛岃В鍐冲仠姝㈠紩鎿庡悗锛屾棤娉曞惎鍔ㄥ紩鎿庣殑闂锛屽鍔犳柟娉晄topService(boolean force)
+澧炲姞鏂规硶锛屼竴杈瑰湪鎵цpublic void deleteJob(String jobname, String groupid)鏂规硶鍚庨噸鏂板姞杞戒綔涓?
+public void startExecuteJob(String groupid, String jobname)
+------2011-05-28------------
+o 鏀寔Map<Key,PO>绫诲瀷鍙傛暟缁戝畾鏈哄埗锛岄€氳繃杩欑鏈哄埗鍙互闈炲父鏂逛究鍦板皢琛ㄥ崟鎻愪氦杩囨潵鐨勪竴涓璞￠泦鍚堟暟鎹?
+鏍规嵁key瀵瑰簲鐨勫瓧娈靛€硷紝褰㈡垚Map绱㈠紩瀵硅薄銆?
+浣跨敤鏂规硶濡備笅锛?
+public String mapbean(@MapKey("fieldName") Map<String,ListBean> beans, ModelMap model) {
+		String sql = "INSERT INTO LISTBEAN (" + "ID," + "FIELDNAME,"
+				+ "FIELDLABLE," + "FIELDTYPE," + "SORTORDER,"
+				+ " ISPRIMARYKEY," + "REQUIRED," + "FIELDLENGTH,"
+				+ "ISVALIDATED" + ")" + "VALUES"
+				+ "(#[id],#[fieldName],#[fieldLable],#[fieldType],#[sortorder]"
+				+ ",#[isprimaryKey],#[required],#[fieldLength],#[isvalidated])";
+		TransactionManager tm = new TransactionManager();
+		try {
+			if(beans != null)
+			{
+				List temp =  convertMaptoList( beans);
+				
+				tm.begin();
+				SQLExecutor.delete("delete from LISTBEAN");
+				SQLExecutor.insertBeans(sql, temp);
+				tm.commit();
+				model.addAttribute("datas", temp);
+			}
+		} catch (Exception e) {
+			try {
+				tm.rollback();
+			} catch (RollbackException e1) {
+				// TODO Auto-generated catch block
+				e1.printStackTrace();
+			}
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+
+		return "path:mapbean";
+	}
+	璇︽儏璇峰弬鑰冩祴璇曠敤渚嬶細
+	/bboss-mvc/WebRoot/WEB-INF/bboss-mapbean.xml
+------2011-05-26------------
+o 鏂板empty鍜宯otempty涓や釜閫昏緫鏍囩浣跨敤鏂规硶鍜宯ull銆乶otnull涓€鏍?
+empty鍒ゆ柇鎸囧畾鐨勫瓧娈电殑鍊兼槸鍚︽槸null锛屾垨鑰呯┖涓诧紝濡傛灉鏉′欢鎴愮珛锛屽垯鎵ц鏍囩浣撲腑鐨勯€昏緫
+notempty鍒ゆ柇鎸囧畾鐨勫瓧娈电殑鍊兼棦涓嶆槸null涔熶笉鏄┖涓诧紝鍒欐墽琛屾爣绛句綋寰楀唴瀹?
+------2011-05-24------------
+o 淇敼null鍜宯otnull鏍囩涓嶈兘姝ｇ‘宸ヤ綔鐨勯棶棰?
+o 淇detail鏍囩鐨勬彁绀轰俊鎭笉鏄緢姝ｇ‘鐨勯棶棰?
+###################################################################################
+------2011-05-20------------
+o 淇寮曠敤瀹瑰櫒datasource婕忔礊
+o 淇閫氳繃妯℃澘鍚姩鏁版嵁婧愬弬鏁拌缃棶棰?
+o 淇涓€绯诲垪绌烘寚閽堥棶棰?
+o 淇浣跨敤澶栭儴鏁版嵁婧愭椂锛屽綋澶栭儴鏁版嵁婧愭槸oracle鏃舵棤娉曡幏鍙栨暟鎹簮鐨勫厓鏁版嵁闂,蹇呴』鍒跺畾鐩稿簲鏁版嵁搴撶殑椹卞姩绋嬪簭锛屽惁鍒欐棤娉曞垵濮嬪寲姝ｇ‘鐨刣badapter
+------2011-05-20-----------
+o 澧炲姞rmi鏈嶅姟鍙戝竷鍜宺mi瀹㈡湇绔粍浠惰幏鍙栧姛鑳?
+鍙戝竷鏈嶅姟鏂规硶锛岄€氳繃 rmi:address鎸囧畾鍙戝竷鏈嶅姟鐨勫敮涓€鍦板潃锛?
+<property name="rmi_service_test"
+		 rmi:address="rmi_service_test"
+		 class="org.frameworkset.spi.remote.rmi.RMIServiceTest"/>
+鏈嶅姟鍣╬ort鐨勬寚瀹氬湪rmi鍗忚閰嶇疆鏂囦欢涓細
+/bbossaop/resources/org/frameworkset/spi/manager-rpc-rmi.xml
+	<!-- 
+					鏈嶅姟鍣ㄧ粦瀹氱鍙?
+				 -->
+	<property name="connection.bind.port" value="1099" />
+	
+rmi瀹㈡湇绔粍浠堕厤缃拰鑾峰彇锛?
+閰嶇疆
+<property name="rmi_service_client_test" factory-class="org.frameworkset.spi.remote.rmi.RMIUtil" factory-method="lookupService">
+		<construction>
+			<property name="servicaddress" value="//172.16.25.108:1099/rmi_service_test"/>			
+		</construction>
+	</property>	
+
+鑾峰彇锛?
+	BaseApplicationContext context ;
+	@Before
+	public void init()
+	{
+		context = ApplicationContext.getApplicationContext("org/frameworkset/spi/remote/rmi/rmi-client.xml");
+	}
+	@Test 
+	public void test() throws RemoteException
+	{
+		RMIServiceTestInf test = (RMIServiceTestInf)context.getBeanObject("rmi_service_client_test");
+		System.out.println(test.sayHello("澶氬"));
+	}
+------2011-05-17------------
+o 淇sqlexecutor瀵规棩鏈熺被鍨媡imestamp澶勭悊涓㈠け鏃跺垎绉掔殑缂洪櫡
+
+
+		
+------2011-05-15-----------
+o 鏀硅繘鍥介檯鍖栨満鍒讹紝姣忎釜缁勪欢瀹瑰櫒鐩稿叧鐨勫浗闄呭寲鏂囦欢蹇呴』鍜岀粍浠跺鍣ㄧ殑鏍归厤缃枃浠跺湪鍚岀骇鐩綍锛屽苟涓斿悕绉颁互涓嬫牸寮忓懡鍚嶏細
+messages_en_US.properties
+messages_zh_CN.properties
+o 鏀硅繘sql閰嶇疆鏂囦欢鍒锋柊鏈哄埗锛屽皢3.1鐗堟湰涓瘡涓猻ql閰嶇疆鏂囦欢瀹氫箟涓€涓畧鎶よ繘绋嬫敼涓哄崟涓€瀹堟姢杩涚▼妫€娴嬫満鍒讹紝鍗虫墍鏈夌殑sql鏂囦欢鏄惁
+鍙樻洿鐨勬娴嬬敱涓€涓畧鎶よ繘绋嬪畬鎴愶紝杩欎釜杩涚▼涓淮鎶や竴涓枃浠堕槦鍒楋紝鍒锋柊浜嬩欢閰嶇疆涔熺敱manager-provider.xml鏂囦欢鏀逛负锛?
+/bbossaop/src/aop.properties涓厤缃細
+sqlfile.refresh_interval=5000
+鍚屾椂灏唖ql閰嶇疆鏂囦欢鐨勭鐞嗗鍣ㄦ敼涓篠OAFileApplicationContext锛屼互渚挎彁鍗囩郴缁熸€ц兘
+
+
+------2011-05-11-----------
+o 鏀硅繘ApplicationContext锛學ebApplicationContext瀹瑰櫒锛屽垎绂诲嚭SOAApplicationContext銆丅aseApplicationContext鍜孌efaultApplicationContext涓変釜绫诲瀷鐨勫鍣紝浠栦滑鐨勮亴璐ｅ垎鍒负锛?
+ApplicationContext锛氬拰鍘熸潵鐨勫姛鑳紸pplicationContext鐨勫姛鑳戒竴鑷达紝鍖呮嫭鍩烘湰鐨刟op/ioc鍔熻兘锛岃繙绋嬫湇鍔★紝鍏ㄥ眬灞炴€х鐞嗭紝鎷︽埅鍣紝鍖呭惈澹版槑寮忎簨鍔＄鐞嗭紝鏄疊aseApplicationContext鐨勫瓙绫?
+SOAApplicationContext/SOAFileApplicationContext锛氫袱涓交閲忕骇鐨刬oc瀹瑰櫒锛屽寘鍚叏灞€灞炴€х鐞嗭紝涓嶅寘鍚繙绋嬫湇鍔★紝鎷︽埅鍣紝涓嶅寘鍚０鏄庡紡浜嬪姟绠＄悊锛屾槸DefaultApplicationContext鐨勫瓙绫?
+DefaultApplicationContext锛氬拰ApplicationContext鐨勫尯鍒氨鏄笉鍖呭惈杩滅▼鏈嶅姟鐨勫姛鑳斤紝鍜岃繙绋嬫湇鍔＄浉鍏崇殑缁勪欢娌℃湁渚濊禆鍏崇郴锛屾槸BaseApplicationContext鐨勫瓙绫?
+BaseApplicationContext锛氭槸涓€涓娊璞″鍣紝鎵€鏈夌殑涓婂眰瀹瑰櫒閮介棿鎺ユ垨鐩存帴瀹炵幇浜嗚繖涓鍣紝鎻愪緵鍏叡鐨勫熀纭€鍔熻兘銆?
+WebApplicationContext锛氭槸mvc妗嗘灦鐨勬帶鍒跺櫒鍜屼笟鍔＄粍浠剁鐞嗗鍣紝鏄疍efaultApplicationContext鐨勫瓙绫伙紝鎷ユ湁DefaultApplicationContext鐨勬墍鏈夊姛鑳姐€?
+
+------2011-05-11------------
+o 瀹屽杽restful瀹炵幇鏈哄埗锛屽彲浠ユ敮鎸佸鎺у埗鍣ㄦ柟娉曠骇鍒殑restful鍏ㄥ湴鍧€鏄犲皠鍏崇郴骞朵慨澶嶄簡閮ㄥ垎缂洪櫡锛?.0鐗堟湰闇€瑕佹牴鎹被绾у埆鍜屾柟娉曠骇鍒湴鍧€缁勫悎鎵嶈兘瀹炵幇
+  restful椋庢牸鐨勫姛鑳斤紝鑰屼笖瀛樺湪缂洪櫡銆?
+o aop妗嗘灦涓疄鐜板璞′笌xml鐩镐簰杞寲鍔熻兘
+
+------2011-05-06------------
+o 淇寰幆渚濊禆鏈哄埗婕忔礊
+o 淇quartz浠诲姟璋冨害瀵艰嚧妯″潡涓病鏈夐厤缃换浣曚换鍔℃椂锛屽悗鍙版姏鍑虹被鍨嬭浆鎹㈠紓甯?
+o 淇3.0鐗堟湰涓病鏈夊皢缁勪欢瀹炰緥鏈哄埗瀹氫箟涓哄崟渚嬫ā寮忕殑婕忔礊锛屼絾鏄痯pt鍩硅鏁欑▼涓嵈鏄庣‘鎸囧嚭璇ョ増鏈腑鐨勭粍浠堕粯璁や负鍗曚緥妯″紡
+
+涓婅堪3涓紡娲炰慨澶嶇殑绋嬪簭涓猴細
+/bbossaop/src/org/frameworkset/spi/assemble/BeanAccembleHelper.java
+/bbossaop/src/org/frameworkset/spi/assemble/Pro.java
+/bbossaop/src/org/frameworkset/spi/assemble/ProviderParser.java
+------2011-05-06------------
+o 淇鍒嗛〉鏍囩鍋跺皵鎵句笉鍒皏m妯℃澘鏂囦欢鐨勬紡娲?
+涓婅堪婕忔礊淇鐨勭▼搴忎负锛?
+/bboss-util/src/com/frameworkset/util/VelocityUtil.java
+------2011-05-03------------
+o 淇鍦ㄤ簨鍔＄幆澧冧笅閫氳繃JDBCPool鐨勬柟娉?
+public TableMetaData getTableMetaDataFromDatabase(Connection con,
+			String tableName)
+鑾峰彇涓嶅埌鐗瑰畾鏁版嵁婧愮殑琛ㄥ厓鏁版嵁鐨勯棶棰?
+------2011-05-03------------
+o 淇preDBUtil.preparedSelect(params, dbName, sql, offset, long)
+	鍦ㄦ煡璇㈡病鏈夋暟鎹殑鎯呭喌涓嬶紝preDBUtil.getMeta()杩斿洖鐨勬槸null锛?
+	
+************************************************bbossgroups-3.1******************************
+------2011-04-30------------
+o mvc妗嗘灦缁戝畾鍙傛暟娉ㄨВ鎸囧畾鏃ユ湡杞崲鏍煎紡锛屼互渚夸繚璇佹寜鍘熷鏁版嵁鏍煎紡灏嗗弬鏁拌浆鎹负姝ｇ‘鐨勬棩鏈?
+o mvc妗嗘灦鍙互灏嗘棩鏈熺被鍨?java.util.Date/java.sql.Date/java.sql.Timestamp)杞崲涓簂ong绫诲瀷鏁版嵁锛屼篃鍙互灏唋ong鏁版嵁杞崲涓烘棩鏈熺被鍨?java.util.Date/java.sql.Date/java.sql.Timestamp)锛?
+涔熷彲浠ヨ繘琛宭ong鏁扮粍鍜屾棩鏈熺被鍨?java.util.Date/java.sql.Date/java.sql.Timestamp)鏁扮粍鐨勭浉浜掕浆鎹?
+o 淇mvc妗嗘灦鎺у埗鍣ㄧ粍浠惰В鏋愬紓甯革細
+	java.lang.IllegalArgumentException: Class must not be null
+	at org.frameworkset.util.Assert.notNull(Assert.java:112)
+	at org.frameworkset.util.annotations.AnnotationUtils.findAnnotation(AnnotationUtils.java:129)
+	at org.frameworkset.web.servlet.handler.HandlerUtils.determineUrlsForHandler(HandlerUtils.java:1965)
+------2011-04-25------------
+o 鎸佷箙灞傛鏋朵腑淇鑾峰彇鏁板瓧绫诲瀷鐨勫€兼椂锛屼竴鏃s涓繑鍥瀗ull鏃讹紝娌℃湁姝ｇ‘鑾峰彇鏁板瓧缂虹渷鍊肩殑闂
+ValueExchange.convert鏂规硶
+
+o 鏍囩搴撲腑淇敼瀛楃涓茶繃婊ゅ櫒锛岃В鍐砵query鎴栬€卆jax鏁版嵁璇锋眰鏃讹紝鍒嗛〉鏌ヨ鐨勪腑鏂囦贡鐮侀棶棰橈紝鏀硅繘瀛楃涓茶繃婊ゅ櫒鐨勬€ц兘
+
+------2011-04-24------------
+o 鏀硅繘webservice鏈嶅姟瑁呰浇鍔熻兘锛屽彲浠ヤ粠mvc鍜屾墍鏈夌殑applicationcontext涓厤缃拰瑁呰浇webservice鏈嶅姟锛?
+Mvc妗嗘灦鐨剋s鏈嶅姟鏃犻渶鐗规畩澶勭悊
+鏅€氱殑applicationcontext瀹瑰櫒涓殑ws鏈嶅姟瀵瑰簲鐨勬ā鍧楅厤缃枃浠堕渶瑕侀厤缃湪org/frameworkset/spi/ws/webserivce-modules.xml鏂囦欢涓?
+
+------2011-04-21------------
+o 澧炲姞缁勪欢寮傛璋冪敤鏈哄埗锛屼娇鐢ㄦ柟娉曞弬鑰冩祴璇曠敤渚嬶細
+/bbossaop/test/org/frameworkset/spi/asyn/AsynbeanTest.java
+鍙互閫氳繃Async娉ㄨВ鏍囨敞缁勪欢涓渶瑕佸紓姝ユ墽琛岀殑鏂规硶鍗冲彲锛屽彲浠ユ寚瀹氳秴鏃舵椂闂达紝鏄惁闇€瑕佽繑鍥炵粨鏋滐紝鏄惁闇€瑕佸洖璋冨鐞嗚繑鍥炵粨鏋?
+
+------2011-04-20------------
+o 瀹屽杽Pro瀵硅薄瀵筆roList锛孭roSet锛孭roMap锛孭roArray鐨勫鐞嗘満鍒?
+o ApplicationContext缁勪欢鏂板涓€缁勮幏鍙朠roArray瀵硅薄鐨勬帴鍙?
+public ProArray getArrayProperty(String name) ;
+public ProArray getProArrayProperty(String name, ProArray defaultValue) ;
+
+o 鏂板convert鏍囩锛屾敮鎸佸瓧鍏告暟鎹€煎悜鍚嶇О鐨勮浆鎹?
+鍏朵腑鐨刣atas涓轰竴涓猰ap灞炴€ф槧灏勫€硷紝name瀵瑰簲浜巏ey锛宑onvert鏍囩閫氳繃name鑾峰彇鍒板搴旂殑灞炴€у€?
+鐒跺悗鏄剧ず鍒伴〉闈笂锛屽鏋滃搴旂殑鍊兼病鏈夐偅涔堣緭鍑篸efaultValue瀵瑰簲鐨勫€硷紝濡傛灉娌℃湁璁剧疆defaultValue
+閭ｄ箞鐩存帴杈撳嚭name銆?
+<pg:convert convertData="datas" colName="name" defaultValue=""/>
+pager-taglib.tld
+frameworkset.jar
+------2011-04-18------------
+o 瑙ｅ喅鑾峰彇绌虹殑ProList鏃跺鑷碼op妗嗘灦鍚姩澶辫触鐨勯棶棰?
+o 瀹屽杽浜嬪姟娉勯湶妫€娴嬫満鍒讹紝鍦╩anager-provider.xml涓鍔犳娴嬮〉闈㈠湴鍧€绫诲瀷閰嶇疆锛?
+<!-- 鏁版嵁搴撲簨鍔℃硠闇叉娴媢rl绫诲瀷鑼冨洿閰嶇疆 -->
+	<property name="transaction.leakcheck.files" >
+		<array componentType="String">
+			<property value=".jsp"/>
+			<property value=".do"/>
+			<property value=".page"/>
+			<property value=".action"/>
+			<property value=".ajax"/>
+		</array>
+	</property>
+------2011-04-16------------
+o 瀹屽杽甯﹁繑鍥炲€肩殑浜嬪姟绠＄悊妯℃澘缁勪欢鏀寔娉涘瀷绫诲瀷鐨勮繑鍥?
+public void stringarraytoList(final List<ListBean> beans) throws Throwable {
+		List<ListBean> ret = TemplateDBUtil.executeTemplate(
+				new JDBCValueTemplate<List<ListBean>>(){
+					public List<ListBean>  execute() throws Exception {
+						String sql = "INSERT INTO LISTBEAN (" + "ID," + "FIELDNAME," 
+						+ "FIELDLABLE," + "FIELDTYPE," + "SORTORDER,"
+						+ " ISPRIMARYKEY," + "REQUIRED," + "FIELDLENGTH,"
+						+ "ISVALIDATED" + ")" + "VALUES"
+						+ "(#[id],#[fieldName],#[fieldLable],#[fieldType],#[sortorder]"
+						+ ",#[isprimaryKey],#[required],#[fieldLength],#[isvalidated])";
+						SQLExecutor.delete("delete from LISTBEAN");
+						SQLExecutor.insertBeans(sql, beans);
+						return beans;
+				}
+			}
+		);
+	}
+o 瑙ｅ喅涓婚〉闈㈤€氳繃ajax鏂瑰紡鍔犺浇澶氫釜鍒嗛〉椤甸潰鏃讹紝璺宠浆鍔熻兘涓嶈兘姝ｅ父浣跨敤鐨勯棶棰橈紝浠ュ強鎻愮ず淇℃伅涓枃涔辩爜闂
+	
+------2011-04-14------------
+o mvc涓紶閫掔粰鍒嗛〉鏍囩鐨勫鑸矾寰勪慨鏀逛负甯︿笂涓嬫枃鐨勭粷瀵瑰湴鍧€锛屼互鍏嶅湪浣跨敤jquery妯″紡灞€閮ㄥ垎椤垫椂锛屼富椤甸潰鐨勭浉瀵瑰湴鍧€鍜屽垎椤靛搴旂殑椤甸潰鐨勭浉瀵硅矾寰勪笉涓€鑷存椂锛屼笉鑳芥纭湴杩涜鍒嗛〉瀵艰埅
+------2011-04-13------------
+o 鎺у埗鍣ㄦ柟娉曚腑澧炲姞Map绫诲瀷鍙傛暟缁戝畾鏈哄埗锛屽彲浠ュ皢request涓殑鍙傛暟杞崲涓篗ap瀵硅薄锛屽綋鍙傛暟鏄暟缁勬椂瀛樺叆鏁扮粍鍊硷紝鍚﹀垯瀛樺叆鍗曚釜鍊?
+------2011-04-11------------
+o 瀹屽杽ConfigSQLExecutor鍜孲QLExecutor缁勪欢涓墍鏈夊拰bean瀵硅薄鐩稿叧鐨勬帴鍙ｏ紝
+	Object bean鍙傛暟鍙互鏄櫘閫氱殑鐨勫€煎璞★紝涔熷彲浠ユ槸涓€涓猄QLParams瀵硅薄,涔熷彲浠ユ槸涓€涓狹ap瀵硅薄
+	浣跨敤鏂规硶鍙傝€冩祴璇曠敤渚嬶細
+	/bboss-persistent/test/com/frameworkset/sqlexecutor/ConfigSQLExecutorTest.java
+
+
+
+	
+------2011-04-11------------
+o 鏂板array鍏冪礌锛岄€氳繃璇ュ厓绱犲彲浠ュ疄鐜板悇绉嶇被鍨嬫暟缁勬暟鎹殑娉ㄥ叆鍔熻兘
+------2011-04-07------------
+o  淇敼DaemonThread杩涚▼锛屾敮鎸佷粠澶栭儴鎸囧畾鍒锋柊鏂囦欢璧勬簮鐨勬椂闂撮棿闅斻€?
+o 瀹屽杽ApplicationContext缁勪欢鐨勭敓鍛藉懆鏈熺鐞嗘満鍒?
+o ApplicationContext缁勪欢澧炲姞鑾峰彇long鍊煎睘鎬х殑api
+------2011-04-11------------
+o 鏂板array鍏冪礌锛岄€氳繃璇ュ厓绱犲彲浠ュ疄鐜板悇绉嶇被鍨嬫暟缁勬暟鎹殑娉ㄥ叆鍔熻兘
+------2011-04-07------------
+o 澧炲姞鏍规嵁鍙橀噺鍚嶇О浠庨厤缃枃浠朵腑鑾峰彇sql璇彞鐨勬潵鎿嶄綔鏁版嵁搴撶粍浠?瀵瑰簲sql閰嶇疆鏂囦欢鎻愪緵瀹氭椂鍒锋柊鏈哄埗
+  濡傛灉妫€娴嬪埌sql鏂囦欢琚慨鏀癸紝灏变粠鏂板姞杞芥枃浠讹紙鍓嶆彁鏄紑鍚埛鏂版満鍒讹級
+com.frameworkset.common.poolman.ConfigSQLExecutor
+鍏蜂綋鐨勪娇鐢ㄦ柟娉曚负锛?
+ConfigSQLExecutor executor = new ConfigSQLExecutor("com/frameworkset/sqlexecutor/sqlfile.xml");
+Map dbBeans  =  executor.queryObject(HashMap.class, "sqltest");
+String result = executor.queryFieldBean("sqltemplate", bean);
+閰嶇疆鏂囦欢锛?
+
+<?xml version="1.0" encoding='gb2312'?>
+<properties>
+<description>
+<![CDATA[
+	sql閰嶇疆鏂囦欢
+	鍙互閫氳繃鍚嶇О灞炴€ame閰嶇疆榛樿sql锛岀壒瀹氭暟鎹簱鐨剆ql閫氳繃鍦?
+	鍚嶇О鍚庨潰鍔犳暟鎹簱绫诲瀷鍚庣紑鏉ュ尯鍒嗭紝渚嬪锛?
+	sqltest
+	sqltest-oracle
+	sqltest-derby
+	sqltest-mysql
+	绛夌瓑锛屾湰閰嶇疆瀹炰緥灏辨紨绀轰簡鍏蜂綋閰嶇疆鏂规硶
+ ]]>
+</description>
+	<property name="sqltest"><![CDATA[select * from LISTBEAN]]>
+	</property>	
+	<property name="sqltest-oracle"><![CDATA[select * from LISTBEAN]]>
+	</property>
+	<property name="sqltemplate"><![CDATA[select FIELDNAME from LISTBEAN where FIELDNAME=#[fieldName]]]>
+	</property>
+	<property name="sqltemplate-oracle"><![CDATA[select FIELDNAME from LISTBEAN where FIELDNAME=#[fieldName]  ]]>
+	</property>	
+	<property name="dynamicsqltemplate"><![CDATA[select *  from CIM_ETL_REPOSITORY  where 1=1 
+					#if($HOST_ID && !$HOST_ID.equals("")) and HOST_ID = #[HOST_ID] #end  
+						and PLUGIN_ID = #[PLUGIN_ID] and CATEGORY_ID = #[CATEGORY_ID] and APP = #[APP]]]>	
+	</property>
+</properties>
+
+鍒锋柊鏈哄埗鐨勯厤缃柟娉曪細
+鍦╩anager-provider.xml鏂囦欢涓坊鍔犱互涓嬮厤缃」鍗冲彲锛?
+<property name="sqlfile.refresh_interval" value="10000"/>
+褰搗alue澶т簬0鏃跺氨寮€鍚痵qlfile鏂囦欢鐨勬洿鏂版娴嬫満鍒讹紝姣忛殧value鎸囧畾鐨勬椂闂撮棿闅斿氨妫€娴嬩竴娆★紝鏈夋洿鏂板氨閲嶆柊鍔犺浇锛屽惁鍒欎笉閲嶆柊鍔犺浇
+
+o 瀹屽杽ApplicationContext缁勪欢鐨勭敓鍛藉懆鏈熺鐞嗘満鍒?
+o ApplicationContext缁勪欢澧炲姞鑾峰彇long鍊煎睘鎬х殑api
+o 瀹屽杽mvc妗嗘灦閰嶇疆鏂囦欢瀵煎叆鏂瑰紡
+鍙互鐢?鍙峰垎闅斿鍏ュ瓙鐩綍涓嬬殑閰嶇疆鏂囦欢,渚嬪锛?
+<servlet>
+	<servlet-name>mvcdispather</servlet-name>
+	<servlet-class>org.frameworkset.web.servlet.DispatchServlet</servlet-class>
+	<init-param>
+		<param-name>contextConfigLocation</param-name>
+		<param-value>/WEB-INF/bboss-*.xml,
+					/WEB-INF/conf/bboss-*.xml</param-value>
+	</init-param>
+銆傘€傘€傘€傘€傘€?
+</servlet>
+
+------2011-04-05------------
+o 鎺у埗鍣ㄦ柟娉曞鍔犳灇涓剧被鍨嬶紝鏋氫妇鏁扮粍绫诲瀷鍙傛暟鐨勭粦瀹氬姛鑳?
+------2011-03-31------------
+o 璺宠浆璺緞鍙互閫氳繃path锛氬厓绱犵洿鎺ユ寚瀹氾紝鑰屾棤闇€娉ㄥ叆
+鍏蜂綋浣跨敤鏂规硶锛屽弬鑰僤emo
+WebRoot/WEB-INF/bboss-path.xml
+
+------2011-04-06------------
+o 澧炲姞涓€缁勬煡璇㈠崟涓瓧娈电殑娉涘瀷鎺ュ彛锛屼娇鐢ㄦ柟娉曞涓嬶細
+		String sql = "select REQUIRED from LISTBEAN ";
+		int id=  SQLExecutor.queryTField(int.class, sql);
+		long id=  SQLExecutor.queryTField(long.class, "select seq_name.nextval from LISTBEAN ");
+		String sql = "select FIELDLABLE from LISTBEAN ";
+		String id=  SQLExecutor.queryTField(String.class, sql);
+		System.out.println(id);
+o 3.0api澧炲姞杩斿洖List<HashMap>缁撴灉闆嗙殑鏌ヨ鎺ュ彛鏀寔锛屼娇鐢ㄦ柟娉曞涓嬶紙浠ラ缂栬瘧璇彞涓轰緥锛夛細
+@Test
+	public void queryListMap() throws SQLException
+	{
+		String sql = "select * from LISTBEAN name=?";
+		List<HashMap> dbBeans  =  SQLExecutor.queryListWithDBName(HashMap.class, "mysql", sql,"ttt");
+		System.out.println(dbBeans);
+	}
+	
+	
+	public void queryListMapWithbeanCondition() throws SQLException
+	{
+		String sql = "select * from LISTBEAN name=#[name]";
+		ListBean beanobject = new ListBean();
+		beanobject.setName("duoduo");
+		List<HashMap> dbBeans  =  SQLExecutor.queryListWithDBName(HashMap.class, "mysql", sql,beanobject);
+		System.out.println(dbBeans);
+	}
+	
+	@Test
+	public void queryMap() throws SQLException
+	{
+		String sql = "select * from LISTBEAN ";
+		Map dbBeans  =  SQLExecutor.queryObject(HashMap.class, sql);
+		System.out.println(dbBeans);
+	}
+	
+------2011-03-30------------
+o 3.0api涓畬鍠勫java.util.Date绫诲瀷瀵硅薄灞炴€ф暟鎹殑澶勭悊
+
+o 淇mvc瀹炵幇鍒嗛〉鍔熻兘鏃讹紝閫氳繃handleMapping娉ㄨВ鎸囧畾鐨剈rl璺緞鏃犳硶杩涜鍒嗛〉鐨刡ug锛屼慨鏀圭殑绋嬪簭濡備笅锛?
+
+------2011-03-20------------
+o 鏀硅繘鍙抽敭鑿滃崟鍔熻兘锛屾彁鍗囧彸閿彍鍗曟€ц兘锛屾秹鍙婄殑鍔熻兘鏈夛細浣跨敤鍙抽敭鑿滃崟鐨勬爲鏍囩鍜屼娇鐢ㄥ彸閿彍鍗曠殑鍒楄〃銆佸垎椤垫爣绛撅紝浠ュ強鎵€鏈夊叾浠栫浉鍏崇殑椤甸潰
