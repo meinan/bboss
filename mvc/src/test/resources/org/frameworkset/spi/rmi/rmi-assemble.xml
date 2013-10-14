@@ -1,0 +1,16 @@
+﻿<properties>
+	<!-- 
+		rmi鏈嶅姟缁勪欢瑁呴厤鏂囦欢,姣忎釜鏂囦欢浣滀负鍗曠嫭鐨勫鍣ㄦ潵澶勭悊,杩欓噷瑁呴厤鐨勬槸classpath涓婁笅鏂囦腑闇€瑕佺嫭绔嬪姞杞界殑rmi鏈嶅姟
+		mvc妗嗘灦涓渶瑕佸姞杞界殑rmi鏈嶅姟鍙渶瑕佸湪瀵瑰簲鐨勭粍浠朵腑鏍囨敞rmi:address鍗冲彲锛屽綋rmi寮曟搸鍚姩鏃朵細鍔犺浇杩欎袱绉嶆ā寮忎笅鐨?		鎵€鏈塺mi鏈嶅姟.
+	 -->
+	<property name="rmi.services.modules">
+		<array componentType="String">
+			<!--<property value="org/frameworkset/spi/remote/rmi/rmi.xml"/>-->
+		</array>
+	</property>
+	
+	<!-- 鏈粍浠朵緷璧栦簬bboss-mvc.jar -->
+	<property name="webapplicationcontext" 
+				factory-class="org.frameworkset.web.servlet.support.WebApplicationContextUtils" 
+				factory-method="getWebApplicationContext"/>	
+</properties>

@@ -1,0 +1,274 @@
+﻿<!-- 
+	jms rpc鍗忚閰嶇疆鏂囦欢,瑕佸惎鐢╦ms rpc鏈嶅姟鐨勫墠鎻愭槸澶勭悊鍣ㄤ腑鐨刯ms閾炬帴宸ュ巶瀵瑰簲鐨?	jms server蹇呴』鏄惎鍔ㄧ殑
+ -->
+<properties>
+	
+
+    
+	<!-- 
+		jms rpc鏈嶅姟璇锋眰鍜屽搷搴斿鐞嗙被
+	 -->
+	<property name="rpc.jms.RPCServerIoHandler" singlable="true" class="org.frameworkset.spi.remote.jms.RPCJMSIOHandler">	
+		<construction>
+			<!-- 
+				璁剧疆澶勭悊鍣ㄧ殑鍚嶅瓧
+			 -->
+			<property name="name" 
+				      value="RPCJMSIOHandler" class="String"/>	
+			<!-- 
+				璁剧疆璇锋眰鐨勫鐞嗗櫒
+			 -->			
+			<property name="request_handler" 
+				      refid="attr:rpc.request_handler" />	
+			<!-- 
+				璁剧疆杩炴帴宸ュ巶瀵硅薄
+			 -->
+			<property name="connectionFactory" 
+				      refid="attr:rpc.jms.ConnectionFactory" />	
+			<!-- 
+				鍙戦€佽繙绋嬭姹傛秷鎭殑鐩爣闃熷垪
+			 -->
+			<property name="requestto" value="rpc.request.queue"/>
+			<!-- 
+				 鎺ユ敹鍝嶅簲娑堟伅鐨勭洰鏍囬槦鍒?			 -->
+			<property name="replyto" value="rpc.response.queue"/>
+			<!-- 
+				  鏈嶅姟鍣ㄦ爣璇嗭紝浣滀负瀹㈡湇绔皟鐢ㄧ殑璇锋眰鍦板潃浣跨敤锛屼緥濡傦細
+				  鏈嶅姟鍦板潃锛?jms::00-23-54-5A-E6-3A-jms)/serviceid锛屾爣璇嗗皢rpc璋冪敤鍙戦€佸埌server_uuid鏍囪瘑涓?0-23-54-5A-E6-3A-jms鐨勮繙绋嬩富鏈轰笂闈?				 鏈嶅姟鍣ㄦ帴鏀跺埌娑堟伅鍚庡湪鏍规嵁璋冪敤绔痵erver_uuid鏍囪瘑灏嗗搷搴斿彂鍥炲埌璋冪敤绔紝姣忓彴鏈嶅姟鍣ㄧ殑鍦板潃鏍囪瘑蹇呴』鍏ㄥ眬鍞竴锛屼竴鏃︾‘瀹氬悗灏变笉瑕佹洿鏀?			 -->
+			<property name="server_uuid" value="yinbiaoping-jms"/>		      
+		</construction>			
+	</property>	
+	
+<!--	<property name="jmstemplate" class="org.frameworkset.mq.JMSTemplate">-->
+<!--		<construction>		-->
+<!--			<property name="connectionfactory" -->
+<!--	      			refid="attr:rpc.jms.ConnectionFactory"/>	        -->
+<!--		</construction>		-->
+<!--	</property>-->
+	
+	<!-- 
+		jms杩炴帴宸ュ巶閰嶇疆
+	 -->
+	<property name="rpc.jms.ConnectionFactory" singlable="true" class="org.frameworkset.mq.AMQConnectionFactory">	
+		<construction>		
+			<property name="connectURL" 
+				      value="tcp://creator-cc:61616"/>				
+			<property name="username" 
+				      value="system" />	
+			<property name="password" 
+				      value="manager" />			
+			<property name="usepool"
+				      value="true" />
+				      
+			<!-- ssl鍗忚閰嶇疆 -->	      
+			<!-- 	      
+	      	<property name="ssl" 
+	      			value="true" />
+	      	<property name="keyStore" 
+	      			value="d:/client.ks" />
+	      	<property name="keyStorepassword" 
+	      			value="123456" />
+	      	<property name="trustStore" 
+	      			value="d:/client.ts" />
+			<property name="trustPassword" 
+	      			value="123456" />
+	      			-->
+	      			
+	      	<property name="connection.params">
+	      		<map>
+	      			<property name="connection.params" refid="attr:rpc.amq.connection.params"/>
+	      			<property name="connection.params.prefetchPolicy" refid="attr:rpc.amq.connection.params.prefetchPolicy"/>
+	      			<property name="connection.params.redirectPolicy" refid="attr:rpc.amq.connection.params.redirectPolicy"/>
+	      			<property name="connection.params.reconnectPolicy" refid="attr:rpc.amq.connection.params.reconnectPolicy"/>		
+				</map>
+			</property>	      	
+	        
+		</construction>			
+	</property>		
+	
+	<!-- 
+			mq杩炴帴宸ュ巶鐨勯厤缃弬鏁版ā鏉?		 -->
+		<property name="rpc.amq.connection.params" label="杩炴帴鍙傛暟">
+			<!--
+				http://activemq.apache.org/maven/activemq-core/xsddoc/http___activemq.org_config_1.0/element/connectionFactory.html
+			-->
+			<map>
+				<property label="alwaysSessionAsync" name="alwaysSessionAsync"
+					value="true" class="boolean">
+					<description> <![CDATA[If this flag is set then a seperate thread is not used for dispatching messages for each Session in the Connection.
+									 However, a separate thread is always used if there is more than one session, 
+									or the session isn't in auto acknowledge or dups ok mode]]></description>
+				</property>
+				<property label="alwaysSyncSend" name="alwaysSyncSend"
+					value="false" class="boolean" min="10" max="100">
+					<description> <![CDATA[Set true if always require messages to be sync sent  ]]></description>
+				</property>
+				<property label="closeTimeout(鍗曚綅锛歮s)" name="closeTimeout" class="int" value="15000">
+					<description> <![CDATA[Sets the timeout before a close is considered complete. ]]></description>
+				</property>
+				<property label="copyMessageOnSend" class="boolean" name="copyMessageOnSend"
+					value="true">
+					<description> <![CDATA[Should a JMS message be copied to a new JMS Message object as part of the send() method in JMS.  ]]></description>
+				</property>
+				<property label="disableTimeStampsByDefault" class="boolean" name="disableTimeStampsByDefault"
+					value="false">
+					<description> <![CDATA[Sets whether or not timestamps on messages should be disabled or not.]]></description>
+				</property>
+				<property label="dispatchAsync" class="boolean" name="dispatchAsync" value="true">
+					<description> <![CDATA[ Enables or disables the default setting of whether or not consumers have their messages dispatched synchronously or asynchronously by the broker. ]]></description>
+				</property>
+				<property label="objectMessageSerializationDefered" class="boolean" name="objectMessageSerializationDefered"
+					value="false">
+					<description> <![CDATA[When an object is set on an ObjectMessage, the JMS spec requires the object to be serialized by that set method. ]]></description>
+				</property>
+				<property label="optimizeAcknowledge" class="boolean" name="optimizeAcknowledge"
+					value="false">
+					<description> <![CDATA[ optimizeAcknowledge ]]></description>
+				</property>
+				<property label="optimizedMessageDispatch" class="boolean" name="optimizedMessageDispatch"
+					value="true">
+					<description> <![CDATA[ If this flag is set then an larger prefetch limit is used - only applicable for durable topic subscribers. ]]></description>
+				</property>
+				<property label="producerWindowSize" class="int" name="producerWindowSize"
+					value="0">
+					<description> <![CDATA[ The ProducerWindowSize is the maximum number of bytes in memory that a producer will transmit to a broker before waiting for acknowledgement messages from the broker that it has accepted the previously sent messages. In other words, this how you configure the producer flow control window that is used for async sends where the client is responsible for managing memory usage. The default value of 0 means no flow control at the client. See also Producer Flow Control. This option only affects Openwire clients as Stomp does not have a means of notifying the clients of accepted messages asynchronously.  ]]></description>
+				</property>
+				<property label="statsEnabled" class="boolean" name="statsEnabled" value="false">
+					<description> <![CDATA[ statsEnabled ]]></description>
+				</property>
+				<property label="useAsyncSend" class="boolean" name="useAsyncSend" value="false">
+					<description> <![CDATA[ Forces the use of Async Sends which adds a massive performance boost; but means that the send() method will return immediately whether the message has been sent or not which could lead to message loss.   ]]></description>
+				</property>
+				<property label="useCompression" class="boolean" name="useCompression"
+					value="false">
+					<description> <![CDATA[  Enables the use of compression of the message bodies   ]]></description>
+				</property>
+				<property label="useRetroactiveConsumer" class="boolean" name="useRetroactiveConsumer"
+					value="false">
+					<description> <![CDATA[  Sets whether or not retroactive consumers are enabled   ]]></description>
+				</property>
+				<property label="watchTopicAdvisories" class="boolean" name="watchTopicAdvisories"
+					value="true">
+					<description> <![CDATA[  Whether to use advisory messages   ]]></description>
+				</property>
+				<property label="sendTimeout(鍗曚綅锛歮s)" class="int" name="sendTimeout" value="0">
+					<description> <![CDATA[  Time to wait on Message Sends for a Response, default value of zero indicates to wait forever. Waiting forever allows the broker to have flow control over messages coming from this client if it is a fast producer or there is no consumer such that the broker would run out of memory if it did not slow down the producer. Does not affect Stomp clients as the sends are ack'd by the broker.   ]]></description>
+				</property>				
+				
+			</map>
+		</property>
+		<!-- 
+			mq杩炴帴宸ュ巶鐨勯厤缃弬鏁版ā鏉?鍙傛暟绫诲瀷涓?		 -->
+		<property name="rpc.amq.connection.params.prefetchPolicy" label="棰勫鐞嗙瓥鐣? >
+			<map>
+				<!--
+					寮曠敤鐨勫璞?鐜颁笉缁存姢
+					id="prefetchPolicy" class="org.apache.activemq.ActiveMQPrefetchPolicy" 
+					浠ヤ笅閰嶇疆鐨勫睘鎬ф槸org.apache.activemq.ActiveMQPrefetchPolicy璇ュ璞＄殑灞炴€ч厤缃?				-->
+				
+				<property label="durableTopicPrefetch" class="int" name="durableTopicPrefetch"
+					value="100">
+					<description> <![CDATA[  The maximum number of messages sent to a consumer on a durable topic until acknowledgements are received   ]]></description>
+				</property>
+				<property label="inputStreamPrefetch" class="int" name="inputStreamPrefetch"
+					value="100">
+					<description> <![CDATA[  The maximum number of messages sent to a consumer on a JMS stream until acknowledgements are received    ]]></description>
+				</property>
+				<property label="maximumPendingMessageLimit" class="int" name="maximumPendingMessageLimit"
+					value="0">
+					<description> <![CDATA[  Sets how many messages a broker will keep around, above the prefetch limit, for non-durable topics before starting to discard older messages   ]]></description>
+				</property>
+				<property label="optimizeDurableTopicPrefetch" class="int" name="optimizeDurableTopicPrefetch"
+					value="1000">
+					<description> <![CDATA[  optimizeDurableTopicPrefetch  ]]></description>
+				</property>
+				<property label="queueBrowserPrefetch" class="int" name="queueBrowserPrefetch"
+					value="500">
+					<description> <![CDATA[  queueBrowserPrefetch]]></description>
+				</property>
+				<property label="queuePrefetch" class="int" name="queuePrefetch" value="1000">
+					<description> <![CDATA[  The maximum number of messages sent to a consumer on a queue until acknowledgements are received ]]></description>
+				</property>
+				<property label="topicPrefetch" class="int" name="topicPrefetch" value="32766">
+					<description> <![CDATA[ The maximum number of messages sent to a consumer on a non-durable topic until acknowledgements are received  ]]></description>
+				</property>		
+			</map>
+		</property>
+	<!--  
+			娑堟伅閲嶅彂鏈哄埗閰嶇疆鍙傛暟妯℃澘
+		-->
+		<property name="rpc.amq.connection.params.redirectPolicy" label="娑堟伅閲嶅彂鏈哄埗">
+			<map>
+			<!--  
+				private double collisionAvoidanceFactor = 0.15d;//collisionAvoidancePercent
+			    private int maximumRedeliveries = 6;
+			    private long initialRedeliveryDelay = 1000L;
+			    private boolean useCollisionAvoidance;
+			    private boolean useExponentialBackOff;
+			    private short backOffMultiplier = 5;
+    		-->
+				<property label="娑堟伅鍐茬獊鐧惧垎姣? name="collisionAvoidancePercent"
+					value="15" class="int">
+					<description> <![CDATA[閬垮厤娑堟伅鍐茬獊鐧惧垎姣旓紝榛樿涓?5锛屼篃灏辨槸15%]]></description>
+				</property>
+				<property label="鏈€澶ч噸鍙戞鏁? name="maximumRedeliveries"
+					value="6" class="int">
+					<description> <![CDATA[璁剧疆涓?1鏃舵棤闄愰噸鍙慮]></description>
+				</property>
+				<property label="閲嶅彂鏃堕棿闂撮殧" name="initialRedeliveryDelay"
+					value="1000" class="int">
+					<description> <![CDATA[姣]]></description>
+				</property>
+				<property label="鏄惁鍚敤鍐茬獊閬垮厤绛栫暐" name="useCollisionAvoidance"
+					value="false" class="boolean">
+					<description> <![CDATA[]]></description>
+				</property>
+				<property label="娑堟伅閲嶅彂閫掑寤惰繜绛栫暐" name="useExponentialBackOff"
+					value="false" class="boolean">
+					<description> <![CDATA[]]></description>
+				</property>
+				<property label="娑堟伅閲嶅彂閫掑姣斾緥" name="backOffMultiplier"
+					value="5" class="int">
+					<description> <![CDATA[]]></description>
+				</property>
+			</map>
+		</property>
+		<!--  
+			鏁呴殰閲嶈繛鏈哄埗閰嶇疆鍙傛暟妯℃澘
+		-->
+		<property name="rpc.amq.connection.params.reconnectPolicy" label="鏁呴殰閲嶈繛鏈哄埗">
+			<map>
+    			<property label="鏄惁鍚敤閲嶈繛鏈哄埗" name="USE_FAILOVER"
+					value="true" class="boolean">
+					<description> <![CDATA[]]></description>
+				</property>
+				<property label="閲嶈繛鏃堕棿闂撮殧" name="reconnectPolicy.initialReconnectDelay"
+					value="10" class="long">
+					<description> <![CDATA[閬垮厤娑堟伅鍐茬獊鐧惧垎姣旓紝榛樿涓?5锛屼篃灏辨槸15%]]></description>
+				</property>
+				<property label="鏈€澶ч噸杩炴椂闂撮棿闅? name="reconnectPolicy.maxReconnectDelay"
+					value="30000" class="long">
+					<description> <![CDATA[璁剧疆涓?1鏃舵棤闄愰噸鍙慮]></description>
+				</property>
+				<property label="鏄惁鍚敤鎸囨暟寤舵椂鏈哄埗" name="reconnectPolicy.useExponentialBackOff"
+					value="true" class="boolean">
+					<description> <![CDATA[姣]]></description>
+				</property>
+				<property label="鎸囨暟琛ュ伩鏈哄埗涓寚鏁板€? name="reconnectPolicy.reconnectDelayExponent"
+					value="2" class="int">
+					<description> <![CDATA[]]></description>
+				</property>
+				<property label="鏈€澶ч噸杩炴鏁? name="reconnectPolicy.maxReconnectAttempts"
+					value="5" class="int">
+					<description> <![CDATA[]]></description>
+				</property>
+				<property label="鏄惁闅忔満閫夐」URI" name="reconnectPolicy.randomize"
+					value="false" class="boolean">
+					<description> <![CDATA[]]></description>
+				</property>
+			</map>
+		</property>
+		
+		
+		
+</properties>

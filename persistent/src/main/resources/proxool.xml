@@ -1,0 +1,32 @@
+﻿<property name="datasource" class="org.logicalcobwebs.proxool.ProxoolDataSource">
+  <!-- 鎸囧畾杩炴帴鏁版嵁搴撶殑JDBC椹卞姩 -->
+  <property name="driver" value="oracle.jdbc.driver.OracleDriver"/>  
+  <!-- 杩炴帴鏁版嵁搴撴墍鐢ㄧ殑URL -->
+  <property name="driverUrl"
+   value="jdbc:oracle:thin:@//10.0.15.134:1521/orcl">
+   <!-- 濡傛灉鏁版嵁搴搖rl鏄姞瀵嗙殑锛屽垯闇€瑕侀厤缃В瀵嗙殑缂栬緫鍣?-->
+	<!--<editor clazz="com.frameworkset.common.poolman.security.DecryptEditor"/> -->
+   </property>  
+  <!-- 杩炴帴鏁版嵁搴撶殑鐢ㄦ埛鍚?-->
+  <property name="user" value="SANYGCMP">
+    <!-- 濡傛灉璐﹀彿鏄姞瀵嗙殑璐﹀彿锛屽垯闇€瑕侀厤缃В瀵嗙殑缂栬緫鍣?-->
+<!--   	<editor clazz="com.frameworkset.common.poolman.security.DecryptEditor"/> -->
+  </property>  
+  <!-- 杩炴帴鏁版嵁搴撶殑瀵嗙爜 -->
+  <property name="password" value="SANYGCMP">
+  <!-- 濡傛灉鍙ｄ护鏄姞瀵嗙殑鍙ｄ护锛屽垯闇€瑕侀厤缃В瀵嗙殑缂栬緫鍣?-->
+<!--   	<editor clazz="com.frameworkset.common.poolman.security.DecryptEditor"/> -->
+  </property>
+
+	<!-- 澶氫釜鏁版嵁婧?alias蹇呴』淇濇寔鍞竴鎬?->
+    <property name="alias" value="Pool_dbname1" />
+    <property name="houseKeepingSleepTime" value="90000" />
+    <property name="prototypeCount" value="0" />
+    <property name="maximumConnectionCount" value="50" />
+    <property name="minimumConnectionCount" value="2" />
+    <property name="simultaneousBuildThrottle" value="50" />
+    <property name="maximumConnectionLifetime" value="14400000" />
+    <property name="houseKeepingTestSql" value="select 1 from dual" />
+    <property name="testBeforeUse" value="true" />
+    
+</property>

@@ -1,0 +1,49 @@
+﻿<properties>
+<!-- 
+			rmi鏈嶅姟璇锋眰鍜屽搷搴斿鐞嗙被
+		 -->
+	<property name="rpc.rmi.RPCServerIoHandler" singlable="true"
+		class="org.frameworkset.spi.remote.rmi.RMIBaseRPCIOHandler">
+		<construction>
+			<property name="name" value="RPCServerIoHandler" class="String" />
+			<property name="request_handler" refid="attr:rpc.request_handler" />			
+		</construction>
+	</property>	
+	<!-- 
+		rmi鏈嶅姟鍣ㄧ粍浠?	 -->
+	<property name="rpc.rmi.server" singlable="true"
+		class="org.frameworkset.spi.remote.rmi.RMIServer">
+		<construction>
+			<property name="rmi.params" refid="attr:rpc.protocol.rmi.params" />			
+		</construction>
+	</property>	
+	
+		
+		<!--  
+			rmi妗嗘灦鐨勯摼鎺ュ弬鏁?		-->
+	<property name="rpc.protocol.rmi.params">
+		<map>
+			<!-- 杩炴帴瓒呮椂鏃堕棿锛岄粯璁ゅ€?0绉掞紝鍗曚綅锛氱锛屽搴攔mi鏆備笉璧蜂綔鐢?-->
+			<property name="connection.timeout" value="5" />
+			
+				<!-- 
+					鏈嶅姟鍣ㄧ粦瀹氱鍙?				 -->
+			<property name="connection.bind.port" value="1093" />
+				<!-- 
+					鏈嶅姟鍣ㄧ粦瀹歩p
+				 -->
+			<property name="connection.bind.ip" value="172.16.17.216" />
+			<!-- 
+				褰撳涓簲鐢ㄥ叕鐢ㄧ粺涓€鐨勬敞鍐屼腑蹇冩椂锛岀敤鏉ュ尯鍒嗘瘡涓湇鍔″櫒鐨勫崗璁粍浠跺悕绉扮殑鍞竴鏍囪瘑
+				娉ㄥ唽鐨勮娉曞涓嬶細
+				address = "//" + ip + ":" + PORT + "/" + serveruuid + "/rpcService";
+				serveruuid鐨勯粯璁ゅ€间负default
+			 -->
+			<property name="server_uuid" value="app1"/>
+			
+			
+		</map>
+	</property>
+	
+	
+</properties>

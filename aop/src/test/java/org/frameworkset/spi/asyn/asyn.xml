@@ -1,0 +1,9 @@
+﻿<properties>
+		<!-- 
+			寮傛璋冪敤澶勭悊鏈嶅姟缁勪欢
+		 -->
+		<property name="asyn.AsynbeanTest" 
+					      class="org.frameworkset.spi.asyn.AsynbeanTest"/>
+		<property name="asyn.AsynbeanCallBackTest" 
+					      class="org.frameworkset.spi.asyn.AsynbeanCallBackTest"/>						
+</properties>

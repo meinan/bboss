@@ -1,0 +1,94 @@
+﻿<properties>
+<!-- 
+			mina鏈嶅姟璇锋眰鍜屽搷搴斿鐞嗙被
+		 -->
+	<property name="rpc.mina.RPCServerIoHandler" singlable="true"
+		class="org.frameworkset.spi.remote.mina.server.RPCServerIoHandler">
+		<construction>
+			<property name="name" value="RPCServerIoHandler" class="String" />
+			<property name="request_handler" refid="attr:rpc.request_handler" />			
+		</construction>
+	</property>	
+	<!-- 
+		mina鏈嶅姟鍣ㄧ粍浠?	 -->
+	<property name="rpc.mina.server" singlable="true"
+		class="org.frameworkset.spi.remote.mina.server.MinaRPCServer">
+		<construction>
+			<property name="mina.params" refid="attr:rpc.protocol.mina.params" />			
+		</construction>
+	</property>	
+	
+		
+		<!--  
+			mina妗嗘灦鐨勯摼鎺ュ弬鏁?		-->
+	<property name="rpc.protocol.mina.params">
+		<map>
+			<!-- 杩炴帴瓒呮椂鏃堕棿锛岄粯璁ゅ€?0绉掞紝鍗曚綅锛氱 -->
+			<property name="connection.timeout" value="60" />
+				<!-- 
+					鏈嶅姟鍣ㄧ粦瀹氱鍙?				 -->
+			<property name="connection.bind.port" value="12346" />
+			<property name="connection.so_linger" value="0" />
+				<!-- 
+					鏈嶅姟鍣ㄧ粦瀹歩p
+				 -->
+			<property name="connection.bind.ip" value="172.16.17.216" />
+			
+			<!-- 
+				ssl閰嶇疆鍙傛暟寮€濮?				濡傛灉鍚敤ssl锛岄偅涔堝繀椤诲湪rpc.protocol.mina.ssl.client鍜?				rpc.protocol.mina.ssl.server涓厤缃瘉涔︾殑鐩稿叧淇℃伅
+				鏈嶅姟鍣ㄧ鍙渶瑕侀厤缃畆pc.protocol.mina.ssl.server
+				瀹㈡湇绔彧闇€瑕侀厤缃畆pc.protocol.mina.ssl.client
+			 -->
+			<property name="enablessl" value="true" />
+<!--			<property name="enabledCipherSuites" value="SSL_DH_anon_WITH_RC4_128_MD5"  >-->
+<!--				<editor class="org.frameworkset.spi.assemble.StringArrayEditor"/>-->
+<!--			</property>-->
+				<!-- 涓嬭堪鍙傛暟涓嶈閰嶇疆  -->
+<!--			<property name="enabledProtocols" value="TLS" >-->
+<!--				<editor class="org.frameworkset.spi.assemble.StringArrayEditor"/>-->
+<!--			</property>-->
+<!--			<property name="needClientAuth" value="false" />-->
+<!--			<property name="wantClientAuth" value="false" />-->
+			
+			<!-- ssl閰嶇疆鍙傛暟缁撴潫 -->
+		</map>
+	</property>
+	
+		<!--  
+			mina妗嗘灦鐨剆sl client鍙傛暟
+		-->
+	<property name="rpc.protocol.mina.ssl.client">
+		<map>
+			<!-- 杩炴帴瓒呮椂鏃堕棿锛岄粯璁ゅ€?0绉掞紝鍗曚綅锛氱 -->
+			<property name="keyStore" value="keystore/client.ks" />
+				<!-- 
+					鏈嶅姟鍣ㄧ粦瀹氱鍙?				 -->
+			<property name="keyStorePassword" value="123456" />
+				<!-- 
+					鏈嶅姟鍣ㄧ粦瀹歩p
+				 -->
+			<property name="trustStore" value="keystore/client.ts" />
+			
+			<property name="trustStorePassword" value="123456" />
+		</map>
+	</property>
+	
+	<!--  
+			mina妗嗘灦鐨剆sl server鍙傛暟
+		-->
+	<property name="rpc.protocol.mina.ssl.server">
+		<map>
+			<!-- 杩炴帴瓒呮椂鏃堕棿锛岄粯璁ゅ€?0绉掞紝鍗曚綅锛氱 -->
+			<property name="keyStore" value="keystore/server.ks" />
+				<!-- 
+					鏈嶅姟鍣ㄧ粦瀹氱鍙?				 -->
+			<property name="keyStorePassword" value="123456" />
+				<!-- 
+					鏈嶅姟鍣ㄧ粦瀹歩p
+				 -->
+			<property name="trustStore" value="keystore/server.ts" />
+			
+			<property name="trustStorePassword" value="123456" />
+		</map>
+	</property>
+</properties>

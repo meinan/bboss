@@ -1,0 +1,103 @@
+﻿<!-- 
+	浠诲姟璋冨害
+-->
+<properties>
+	<property name="quartz.config">
+		<map>
+			<property name="org.quartz.scheduler.instanceName" value="testQuartzScheduler" />
+			<property name="org.quartz.scheduler.rmi.export" value="false" />
+			<property name="org.quartz.scheduler.rmi.proxy" value="false" />
+			<property name="org.quartz.scheduler.wrapJobExecutionInUserTransaction" value="false" />
+			<property name="org.quartz.threadPool.class" value="org.quartz.simpl.SimpleThreadPool" />
+			<property name="org.quartz.threadPool.threadCount" value="10" />
+			<property name="org.quartz.threadPool.threadPriority" value="5" />
+			<property name="org.quartz.threadPool.threadsInheritContextClassLoaderOfInitializingThread" value="true" />
+			<property name="org.quartz.jobStore.misfireThreshold" value="6000" />
+			<property name="org.quartz.jobStore.class" value="org.quartz.simpl.RAMJobStore" />
+		</map>
+		<!-- for cluster -->
+		
+	</property>
+
+	<property name="taskconfig" enable="true">
+		<list>
+			<property name="瀹氭椂浠诲姟鎵ц鍣? taskid="default"
+				class="org.frameworkset.task.DefaultScheduleService" used="true">
+				<!--
+					鍙墽琛岀殑浠诲姟椤?
+					灞炴€ц鏄庯細
+					name锛氫换鍔￠」鍚嶇О
+					id:浠诲姟椤规爣璇?灏嗕綔涓轰綔涓氬湪quartz浠诲姟寮曟搸涓殑鍞竴鏍囪瘑
+					action:鍏蜂綋鐨勪换鍔℃墽琛屽鐞嗙▼搴?瀹炵幇org.frameworkset.task.Execute鎺ュ彛
+					cron_time锛?cron鏍煎紡鐨勬椂闂磋〃杈惧紡锛岀敤鏉ョ鐞嗕换鍔℃墽琛岀殑鐢熷懡鍛ㄦ湡锛岀浉鍏崇殑瑙勫垯璇峰弬鐓ф棩鏈熺鐞嗘帶浠秖uartz鐨勮鏄庢枃妗?
+					shouldRecover:闆嗙兢鐜涓嬪睘鎬у繀椤昏缃负 true锛屽綋Quartz鏈嶅姟琚腑姝㈠悗锛屽啀娆″惎鍔ㄦ垨闆嗙兢涓叾浠栨満鍣ㄦ帴鎵嬩换鍔℃椂浼氬皾璇曟仮澶嶆墽琛屼箣鍓嶆湭瀹屾垚鐨勬墍鏈変换鍔°€?
+					used 鏄惁浣跨敤
+					true 鍔犺浇锛岀己鐪佸€?
+					false 涓嶅姞杞?  
+					瀛愬厓绱犺鏄庯細
+					parameter:璁剧疆浠诲姟鎵ц鐨勫弬鏁帮紝name鏍囪瘑鍙傛暟鍚嶇О锛寁alue鎸囧畾鍙傛暟鐨勫€?
+				-->
+				<list>
+					<property name="workbroker" jobid="workbroker"
+						joblistenername="test TriggerListener"
+						action="org.frameworkset.task.TestJob"
+						cronb_time="2 * * * * ?" used="true"
+						shouldRecover="false"
+						>
+						<map>
+							<property name="send_count" value="2" />
+						</map>
+					</property>					
+					<!-- 缁勪欢鏂瑰紡鎸囧畾浠诲姟鎵ц绋嬪簭,閫氳繃bean-name鎸囧畾浠诲姟绋嬪簭缁勪欢锛宮ethod鎸囧畾瑕佹墽琛岀殑鏂规硶
+					閫氳繃
+					construction鎸囧畾鏂规硶鐨勫弬鏁板€硷紝澶氫釜鍙傛暟鎸夌収鍙傛暟鐨勯『搴忔寚瀹?
+					澶氫釜property灞炴€у嵆鍙€?->
+					<property name="beanmethodjobnoargs" jobid="beanmethodjobnoargs"						
+						bean-name="methodjob"
+						method="action"
+						cronb_time="2 * * * * ?" used="true"
+						shouldRecover="false"/>					
+					<!-- 缁勪欢鏂瑰紡鎸囧畾浠诲姟鎵ц绋嬪簭,閫氳繃bean-name鎸囧畾浠诲姟绋嬪簭缁勪欢锛宮ethod鎸囧畾瑕佹墽琛岀殑鏂规硶
+					閫氳繃
+					construction鎸囧畾鏂规硶鐨勫弬鏁板€硷紝澶氫釜鍙傛暟鎸夌収鍙傛暟鐨勯『搴忔寚瀹?
+					澶氫釜property灞炴€у嵆鍙€?->
+					<property name="beanmethodjob" jobid="beanmethodjob"						
+						bean-name="methodjob"
+						method="action"
+						cronb_time="2 * * * * ?" used="true"
+						shouldRecover="false">
+						<construction>
+							<property name="hello" value="hello" />
+						</construction>
+					</property>
+					<!--  
+					class鏂瑰紡鎸囧畾 浠诲姟绋嬪簭锛宮ethod鏂规硶瀵瑰簲瑕佹墽琛岀殑鏂规硶锛岄€氳繃
+					construction鎸囧畾鏂规硶鐨勫弬鏁板€硷紝澶氫釜鍙傛暟鎸夌収鍙傛暟鐨勯『搴忔寚瀹?
+					澶氫釜property灞炴€у嵆鍙€?
+					 -->
+					<property name="beanclassmethodjob" jobid="beanclassmethodjob"						
+						bean-class="org.frameworkset.task.ClassMethodJob"
+						method="action" 
+						cronb_time="2 * * * * ?" used="true"
+						shouldRecover="false">
+						<construction>
+							<property name="hello" value="hello" />
+						</construction>
+					</property>
+					<!--  
+					class鏂瑰紡鎸囧畾 浠诲姟绋嬪簭锛宮ethod鏂规硶瀵瑰簲瑕佹墽琛岀殑鏂规硶锛岄€氳繃
+					construction鎸囧畾鏂规硶鐨勫弬鏁板€硷紝澶氫釜鍙傛暟鎸夌収鍙傛暟鐨勯『搴忔寚瀹?
+					澶氫釜property灞炴€у嵆鍙€?
+					 -->
+					<property name="beanclassmethodjobnoargs" jobid="beanclassmethodjobnoargs"						
+						bean-class="org.frameworkset.task.ClassMethodJob"
+						method="action" 
+						cronb_time="2 * * * * ?" used="true"
+						shouldRecover="false"/>	
+				</list>
+			</property>
+		</list>
+	</property>
+	
+	<property name="methodjob" class="org.frameworkset.task.MethodJob"/>
+</properties>

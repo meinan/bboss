@@ -1,0 +1,55 @@
+<?xml version="1.0"?>
+<project xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd" xmlns="http://maven.apache.org/POM/4.0.0"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+  <modelVersion>4.0.0</modelVersion>
+  <parent>
+    <artifactId>bboss</artifactId>
+    <groupId>bboss</groupId>
+    <version>1.0</version>
+  </parent>
+  
+  <groupId>bboss</groupId>
+  <artifactId>mvc</artifactId>
+  <version>1.0</version>
+  <packaging>war</packaging>
+  <name>bboss.mvc</name>
+  <url>http://maven.apache.org</url>
+	<build>
+		<finalName>mvc</finalName>
+	</build>
+  
+  <properties>
+    <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+  </properties>
+  <dependencies>
+   	<dependency>
+		<groupId>bboss</groupId>
+		<artifactId>aop</artifactId>
+		<version>1.0</version>
+		<scope>compile</scope>
+	</dependency>
+	<dependency>
+		<groupId>bboss</groupId>
+		<artifactId>persistent</artifactId>
+		<version>1.0</version>
+		<scope>compile</scope>
+	</dependency>
+	<dependency>
+		<groupId>org.apache.poi</groupId>
+		<artifactId>poi</artifactId>
+		<version>3.0.2-FINAL</version>
+		<scope>compile</scope>
+	</dependency>
+    <dependency>
+      <groupId>junit</groupId>
+      <artifactId>junit</artifactId>
+      <version>4.7</version>
+      <scope>test</scope>
+    </dependency>
+    <dependency>
+    	<groupId>net.sf.jasperreports</groupId>
+    	<artifactId>jasperreports</artifactId>
+    	<version>3.7.6</version>
+    </dependency>
+  </dependencies>
+</project>

@@ -1,0 +1,23 @@
+﻿<properties>
+<!-- 
+		webservice鏈嶅姟缁勪欢瑁呴厤鏂囦欢,姣忎釜鏂囦欢浣滀负鍗曠嫭鐨勫鍣ㄦ潵澶勭悊,杩欓噷瑁呴厤鐨勬槸classpath涓婁笅鏂囦腑闇€瑕佺嫭绔嬪姞杞界殑webservice鏈嶅姟
+		mvc妗嗘灦涓渶瑕佸姞杞界殑webservice鏈嶅姟鍙渶瑕佸湪瀵瑰簲鐨勭粍浠朵腑鏍囨敞servicePort鍗冲彲锛屽綋webservice寮曟搸鍚姩鏃朵細鍔犺浇杩欎袱绉嶆ā寮忎笅鐨?		鎵€鏈墂ebservice鏈嶅姟		
+		闇€瑕佹敞鎰忕殑鏄紝webservice寮曟搸闇€瑕佸湪mvc妗嗘灦鍚姩鍚庡湪鍚姩
+	 -->
+	<property name="cxf.webservices.modules" >
+		<array componentType="String">
+			<property value="org/frameworkset/spi/ws/protocol-ws.xml"/>
+			<property value="org/frameworkset/web/ws/testwsmodule.xml"/>
+		</array>
+	</property>
+	
+	
+	<!-- 鏈粍浠朵緷璧栦簬bboss-mvc.jar -->
+	<property name="webapplicationcontext" 
+			  factory-class="org.frameworkset.web.servlet.support.WebApplicationContextUtils" 
+			  factory-method="getWebApplicationContext"/>
+	
+     <property  name="client.proxy.simpledemo" class="org.frameworkset.spi.remote.clientproxy.ClientImpl" />
+	
+	
+</properties>

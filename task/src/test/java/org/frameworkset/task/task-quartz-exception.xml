@@ -1,0 +1,237 @@
+﻿<!-- 
+	浠诲姟璋冨害
+-->
+<properties>
+	<property name="quartz.config">
+		<map>
+			<property name="org.quartz.scheduler.instanceName" value="testQuartzScheduler" />
+			<property name="org.quartz.scheduler.rmi.export" value="false" />
+			<property name="org.quartz.scheduler.rmi.proxy" value="false" />
+			<property name="org.quartz.scheduler.wrapJobExecutionInUserTransaction" value="false" />
+			<property name="org.quartz.threadPool.class" value="org.quartz.simpl.SimpleThreadPool" />
+			<property name="org.quartz.threadPool.threadCount" value="1" />
+			<property name="org.quartz.threadPool.threadPriority" value="5" />
+			<property name="org.quartz.threadPool.threadsInheritContextClassLoaderOfInitializingThread" value="true" />
+			<property name="org.quartz.jobStore.misfireThreshold" value="6000" />
+			<property name="org.quartz.jobStore.class" value="org.quartz.simpl.RAMJobStore" />
+		</map>
+		<!-- for cluster -->
+		
+	</property>
+	
+	<!--
+		quartz寮曟搸鐩戝惉鍣ㄩ厤缃?
+		-->
+	<property name="quartz.config.schedulerlistener">
+		<list componentType="bean">
+			<property name="DefaultSchedulerlistener" class="org.frameworkset.task.DefaultSchedulerListener"/>
+		</list>
+	</property>
+	<!--
+		浠诲姟鍏ㄥ眬鐩戝惉鍣ㄩ厤缃?
+		-->
+	<property name="quartz.config.globaljoblistener">
+		<list componentType="bean">
+			
+		</list>
+		
+	</property>
+	<!--
+		浠诲姟鐩戝惉鍣ㄩ厤缃?
+		-->
+	<property name="quartz.config.joblistener">
+		<list componentType="bean">
+			<property name="DefaultJobListener" class="org.frameworkset.task.DefaultJobListener"/>
+		</list>
+		
+	</property>
+	<!--
+		浠诲姟鍏ㄥ眬Trigger鐩戝惉鍣ㄩ厤缃?
+		-->
+	<property name="quartz.config.globaltriggerlistener">
+		<list componentType="bean">
+			<property name="GlobleTriggerListener" class="org.frameworkset.task.GlobalTriggerListener"/>
+		</list>
+		
+	</property>
+	<!--
+		浠诲姟Trigger鐩戝惉鍣ㄩ厤缃?
+		-->
+	<property name="quartz.config.triggerlistener">
+		<list componentType="bean">
+			<property name="DefaultTriggerListener" class="org.frameworkset.task.DefaultTriggerListener"/>
+		</list>
+		
+	</property>
+	<!--
+		浠诲姟鏃ュ巻閰嶇疆
+		AnnualCalendar
+		CronCalendar
+		DailyCalendar
+		HolidayCalendar
+		MonthlyCalendar
+		WeeklyCalendar
+		-->
+	<property name="quartz.config.calendar">
+		<map>
+			<property name="2012year">
+				<![CDATA[ 
+				//娉曞畾鑺傛棩鏄互姣忓勾涓哄懆鏈熺殑锛屾墍浠ヤ娇鐢ˋnnualCalendar
+				AnnualCalendar holidays = new AnnualCalendar();
+				//浜斾竴鍔冲姩鑺?
+				java.util.Calendar laborDay = new GregorianCalendar();
+				laborDay.add(java.util.Calendar.MONTH,5);
+				laborDay.add(java.util.Calendar.DATE,1);
+				holidays.setDayExcluded(laborDay, true); //鎺掗櫎鐨勬棩鏈燂紝濡傛灉璁剧疆涓篺alse鍒欎负鍖呭惈
+				//鍥藉簡鑺?
+				java.util.Calendar nationalDay = new GregorianCalendar();
+				nationalDay.add(java.util.Calendar.MONTH,10);
+				nationalDay.add(java.util.Calendar.DATE,1);
+				holidays.setDayExcluded(nationalDay, true);//鎺掗櫎璇ユ棩鏈?
+				return holidays;
+					]]>
+			</property>
+			<property name="2013year" class="org.frameworkset.task.TestCalendarBuilder"/>
+		</map>
+		
+	</property>
+	
+	
+
+	<property name="taskconfig" enable="true">
+		<list>
+			<property name="瀹氭椂浠诲姟鎵ц鍣? taskid="default"
+				class="org.frameworkset.task.DefaultScheduleService" used="true">
+				<!--
+					鍙墽琛岀殑浠诲姟椤?
+					灞炴€ц鏄庯細
+					name锛氫换鍔￠」鍚嶇О
+					id:浠诲姟椤规爣璇?灏嗕綔涓轰綔涓氬湪quartz浠诲姟寮曟搸涓殑鍞竴鏍囪瘑
+					action:鍏蜂綋鐨勪换鍔℃墽琛屽鐞嗙▼搴?瀹炵幇org.frameworkset.task.Execute鎺ュ彛
+					cron_time锛?cron鏍煎紡鐨勬椂闂磋〃杈惧紡锛岀敤鏉ョ鐞嗕换鍔℃墽琛岀殑鐢熷懡鍛ㄦ湡锛岀浉鍏崇殑瑙勫垯璇峰弬鐓ф棩鏈熺鐞嗘帶浠秖uartz鐨勮鏄庢枃妗?
+					shouldRecover:闆嗙兢鐜涓嬪睘鎬у繀椤昏缃负 true锛屽綋Quartz鏈嶅姟琚腑姝㈠悗锛屽啀娆″惎鍔ㄦ垨闆嗙兢涓叾浠栨満鍣ㄦ帴鎵嬩换鍔℃椂浼氬皾璇曟仮澶嶆墽琛屼箣鍓嶆湭瀹屾垚鐨勬墍鏈変换鍔°€?
+					used 鏄惁浣跨敤
+					true 鍔犺浇锛岀己鐪佸€?
+					false 涓嶅姞杞?  
+					瀛愬厓绱犺鏄庯細
+					parameter:璁剧疆浠诲姟鎵ц鐨勫弬鏁帮紝name鏍囪瘑鍙傛暟鍚嶇О锛寁alue鎸囧畾鍙傛暟鐨勫€?
+				-->
+				<list>
+					
+					<!-- 缁勪欢鏂瑰紡鎸囧畾浠诲姟鎵ц绋嬪簭,閫氳繃bean-name鎸囧畾浠诲姟绋嬪簭缁勪欢锛宮ethod鎸囧畾瑕佹墽琛岀殑鏂规硶
+					閫氳繃
+					construction鎸囧畾鏂规硶鐨勫弬鏁板€硷紝澶氫釜鍙傛暟鎸夌収鍙傛暟鐨勯『搴忔寚瀹?
+					澶氫釜property灞炴€у嵆鍙€?
+					joblistenername="test JobListener"
+						trigger:simple,cron,DateInterval,NthIncludedDay  缂虹渷鍊间负cron
+						鎵€鏈夋椂闂撮噰鐢▂yyy-MM-dd HH:mm:ss鏍煎紡閰嶇疆
+						cron 灞炴€ч泦锛?
+							timeZone 鏃跺尯鏍囪瘑
+							volatility boolean 鏄惁鎸佷箙鍖栦换鍔?
+							shouldRecover
+							description
+							durability boolean 浠诲姟澶辨晥鍚庢槸鍚︿繚鐣?
+							cronb_time
+						simple 灞炴€ч泦锛?
+							startTime 渚嬪锛歴tartTime="2013-01-23 16:29:00"
+							endTime 
+							repeatCount 
+							repeatInterval The number of milliseconds to pause between the repeat firing.
+							volatility boolean 鏄惁鎸佷箙鍖栦换鍔?
+							shouldRecover
+							description
+							durability boolean 浠诲姟澶辨晥鍚庢槸鍚︿繚鐣?
+                        DateInterval 灞炴€ч泦
+							startTime
+							endTime
+							intervalUnit  { SECOND, MINUTE, HOUR, DAY, WEEK, MONTH, YEAR }
+							repeatInterval
+							volatility boolean 鏄惁鎸佷箙鍖栦换鍔?
+							shouldRecover
+							description
+							durability boolean 浠诲姟澶辨晥鍚庢槸鍚︿繚鐣?
+
+						NthIncludedDay 灞炴€ч泦
+							startTime
+							endTime 
+							fireAtTime HH:MM[:SS]
+							intervalType   WEEKLY MONTHLY YEARLY
+							N 绗嚑
+							timeZone 鏃跺尯鏍囪瘑
+							volatility boolean 鏄惁鎸佷箙鍖栦换鍔?
+							shouldRecover
+							description
+							durability boolean 浠诲姟澶辨晥鍚庢槸鍚︿繚鐣?
+						builder 
+							builder绫诲瀷鏄痓boss鎻愪緵鐨勪竴绉嶅姩鎬佽幏鍙栦换鍔￠厤缃殑瑙﹀彂鍣ㄧ被鍨嬶紝trigger鐢卞疄鐜版帴鍙rg.frameworkset.task.TriggerBuilder鐨勭粍浠舵柟娉曞垱寤猴細
+								public Trigger builder(SchedulejobInfo jobInfo) throws Exception;
+						        鏂规硶鍙傛暟鍙互璇诲彇鍒颁换鍔＄殑鍚勭闈欐€侀厤缃睘鎬э紝杩欎簺灞炴€у彲浠ユ槸cron 锛宻imple锛孌ateInterval锛孨thIncludedDay鍥涚绫诲瀷涓殑灞炴€ч泦
+						        鍙栧喅浜庢柟娉曡繑鍥炵殑Trigger绫诲瀷锛坈ron 锛宻imple锛孌ateInterval锛孨thIncludedDay锛?
+								鍚屾椂杩樺彲浠ヤ粠鍏朵粬璇稿鏁版嵁搴撹〃涓鍙栧拰鍔犺浇浠诲姟浣滀笟灞炴€э紝濡傛灉杩欎簺灞炴€у彂鐢熷彉鍖栵紝杩樺彲浠ラ噸鍚綔涓氬疄鏃跺姞杞藉彉鍖栧悗鐨勯厤缃?
+							灞炴€ч泦
+								鑷姩缁ф壙cron 锛宻imple锛孌ateInterval锛孨thIncludedDay鍥涚绫诲瀷涓殑灞炴€ч泦锛岀壒鏈夌殑灞炴€у涓嬶細
+								triggerbuilder-bean 鎸囧畾trigger鐢熸垚鍣ㄤ负涓€涓猙boss ioc 缁勪欢
+								triggerbuilder-class 鎸囧畾trigger鐢熸垚鍣ㄧ殑瀹炵幇绫籧lass璺緞
+						    鐢ㄦ硶
+							褰撲换鍔℃椂闂村懆鏈熷彂鐢熷彉鍖栨椂锛屽彲浠ヨ皟鐢═askService鎺ュ彛閲嶅惎鐩稿簲鐨勪换鍔★細
+							鏇存柊榛樿缁勭殑浣滀笟
+							public void updateExecuteJob(String jobname);
+							鏇存柊鎸囧畾浣滀笟缁勭殑浠诲姟
+							public void updateExecuteJob(String groupid, String jobname)
+						-->
+					<property name="beanmethodjobnoargs" jobid="beanmethodjobnoargs"						
+						bean-name="methodjob"
+						method="actionexception"
+						calendar="2012year"
+						joblistenername="DefaultJobListener"
+						triggerlistenername="DefaultTriggerListener"
+						trigger="cron"
+						cronb_time="2 * * * * ?" used="false"
+						shouldRecover="false"/>		
+					<property name="simplebeanmethodjobnoargs" jobid="simplebeanmethodjobnoargs"						
+						bean-name="methodjob"
+						method="actionexception"
+						calendar="2013year"
+						triggerlistenername="DefaultTriggerListener"
+						trigger="simple"
+						
+						startTime="2013-01-23 16:29:00"
+						repeatCount="2"
+						repeatInterval="2000"
+						used="false" 
+						shouldRecover="false"/>
+					<property name="repeatsimplebeanmethodjobnoargs" jobid="repeatsimplebeanmethodjobnoargs"						
+						bean-name="methodjob"
+						method="actionexception"
+						trigger="simple"
+						repeatInterval="10000"
+						used="true" 
+						shouldRecover="false"/>	
+										
+					<property name="simplebeanmethodjobnoargs-triggerbuilderclass" jobid="simplebeanmethodjobnoargs-triggerbuilderclass"						
+						bean-name="methodjob"
+						method="actionexception"
+						calendar="2013year"
+						triggerlistenername="DefaultTriggerListener"
+						trigger="builder"
+						triggerbuilder-class="org.frameworkset.task.TestTiggerBuilder"						
+						used="false" 
+						shouldRecover="false"/>
+					<property name="simplebeanmethodjobnoargs-triggerbuilderbean" jobid="simplebeanmethodjobnoargs-triggerbuilderbean"						
+						bean-name="methodjob"
+						method="actionexception"
+						calendar="2013year"
+						triggerlistenername="DefaultTriggerListener"
+						trigger="builder"
+						triggerbuilder-bean="testTiggerBuilder"
+						used="false" 
+						shouldRecover="false"/>
+					
+				</list>
+			</property>
+		</list>
+	</property>
+	<property name="testTiggerBuilder" class="org.frameworkset.task.TestTiggerBuilder"/>
+	
+	<property name="methodjob" class="org.frameworkset.task.MethodJob"/>
+</properties>

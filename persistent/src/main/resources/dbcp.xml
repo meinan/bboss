@@ -1,0 +1,23 @@
+﻿<property name="datasource" class="org.apache.commons.dbcp.BasicDataSource">
+ 	<property name="driverClassName" value="oracle.jdbc.driver.OracleDriver"/>  
+	<property name="url" value="jdbc:oracle:thin:@//10.0.15.134:1521/orcl"/>  
+	<property name="username" value="SANYGCMP"/>  
+	<property name="password" value="SANYGCMP"/>  
+	<!--initialSize: 鍒濆鍖栬繛鎺?->  
+	<property name="initialSize" value="5"/>  
+	<!--maxIdle: 鏈€澶х┖闂茶繛鎺?->  
+	<property name="maxIdle" value="20"/>  
+	<!--minIdle: 鏈€灏忕┖闂茶繛鎺?->  
+	<property name="minIdle" value="5"/>  
+	<!--maxActive: 鏈€澶ц繛鎺ユ暟閲?->  
+	<property name="maxActive" value="15"/>  
+	<!--removeAbandoned: 鏄惁鑷姩鍥炴敹瓒呮椂杩炴帴-->  
+	<property name="removeAbandoned" value="true"/>  
+	<!--removeAbandonedTimeout: 瓒呮椂鏃堕棿(浠ョ鏁颁负鍗曚綅)-->  
+	<property name="removeAbandonedTimeout" value="180"/>  
+	<!--maxWait: 瓒呮椂绛夊緟鏃堕棿浠ユ绉掍负鍗曚綅 6000姣/1000绛変簬6绉?->  
+	<property name="maxWait" value="3000"/>  
+	<property name="validationQuery" value="SELECT 1 from dual"/>	  
+	<property name="testOnBorrow" value="true"/> 
+</property>
+ 

@@ -1,0 +1,35 @@
+﻿<property name="datasource" class="com.mchange.v2.c3p0.ComboPooledDataSource">
+  <!-- 鎸囧畾杩炴帴鏁版嵁搴撶殑JDBC椹卞姩 -->
+  <property name="driverClass" value="oracle.jdbc.driver.OracleDriver"/>  
+  <!-- 杩炴帴鏁版嵁搴撴墍鐢ㄧ殑URL -->
+  <property name="jdbcUrl"
+   value="jdbc:oracle:thin:@//10.0.15.134:1521/orcl">
+   <!-- 濡傛灉鏁版嵁搴搖rl鏄姞瀵嗙殑锛屽垯闇€瑕侀厤缃В瀵嗙殑缂栬緫鍣?-->
+	<!--<editor clazz="com.frameworkset.common.poolman.security.DecryptEditor"/> -->
+   </property>  
+  <!-- 杩炴帴鏁版嵁搴撶殑鐢ㄦ埛鍚?-->
+  <property name="user" value="SANYGCMP">
+    <!-- 濡傛灉璐﹀彿鏄姞瀵嗙殑璐﹀彿锛屽垯闇€瑕侀厤缃В瀵嗙殑缂栬緫鍣?-->
+<!--   	<editor clazz="com.frameworkset.common.poolman.security.DecryptEditor"/> -->
+  </property>  
+  <!-- 杩炴帴鏁版嵁搴撶殑瀵嗙爜 -->
+  <property name="password" value="SANYGCMP">
+  <!-- 濡傛灉鍙ｄ护鏄姞瀵嗙殑鍙ｄ护锛屽垯闇€瑕侀厤缃В瀵嗙殑缂栬緫鍣?-->
+<!--   	<editor clazz="com.frameworkset.common.poolman.security.DecryptEditor"/> -->
+  </property>
+  
+  <!-- 璁剧疆鏁版嵁搴撹繛鎺ユ睜鐨勬渶澶ц繛鎺ユ暟 -->
+  <property name="maxPoolSize" value="20"/>  
+  <!-- 璁剧疆鏁版嵁搴撹繛鎺ユ睜鐨勬渶灏忚繛鎺ユ暟 -->
+  <property name="minPoolSize" value="2"/>
+  
+  <!-- 璁剧疆鏁版嵁搴撹繛鎺ユ睜鐨勫垵濮嬪寲杩炴帴鏁?-->
+  <property name="initialPoolSize" value="2"/>
+  <!-- 璁剧疆鏁版嵁搴撹繛鎺ユ睜鐨勮繛鎺ョ殑鏈€澶х┖闂叉椂闂?鍗曚綅涓虹 -->
+  <property name="maxIdleTime" value="20"/>  
+  <property name="preferredTestQuery" value="select 1 from dual"/>
+  <property name="testConnectionOnCheckout" value="true"/>
+  
+  
+</property>
+ 

@@ -1,0 +1,93 @@
+﻿<properties>
+<!-- 
+			netty鏈嶅姟璇锋眰鍜屽搷搴斿鐞嗙被
+		 -->
+	<property name="rpc.netty.RPCServerIoHandler" singlable="true"
+		class="org.frameworkset.netty.NettyIOHandler">
+		<construction>
+			<property name="name" value="RPCServerIoHandler" class="String" />
+			<property name="request_handler" refid="attr:rpc.request_handler" />			
+		</construction>
+	</property>	
+	<!-- 
+		netty鏈嶅姟鍣ㄧ粍浠?	 -->
+	<property name="rpc.netty.server" singlable="true"
+		class="org.frameworkset.netty.NettyRPCServer">
+		<construction>
+			<property name="netty.params" refid="attr:rpc.protocol.netty.params" />			
+		</construction>
+	</property>	
+	
+		
+		<!--  
+			netty妗嗘灦鐨勯摼鎺ュ弬鏁?		-->
+	<property name="rpc.protocol.netty.params">
+		<map>
+			<!-- 杩炴帴瓒呮椂鏃堕棿锛岄粯璁ゅ€?0绉掞紝鍗曚綅锛氱 -->
+			<property name="connection.timeout" value="60" />
+				<!-- 
+					鏈嶅姟鍣ㄧ粦瀹氱鍙?				 -->
+			<property name="connection.bind.port" value="12347" />
+				<!-- 
+					鏈嶅姟鍣ㄧ粦瀹歩p
+				 -->
+			<property name="connection.bind.ip" value="172.16.7.108" />
+			
+			<!-- 
+				ssl閰嶇疆鍙傛暟寮€濮?				濡傛灉鍚敤ssl锛岄偅涔堝繀椤诲湪rpc.protocol.netty.ssl.client鍜?				rpc.protocol.netty.ssl.server涓厤缃瘉涔︾殑鐩稿叧淇℃伅
+				鏈嶅姟鍣ㄧ鍙渶瑕侀厤缃畆pc.protocol.netty.ssl.server
+				瀹㈡湇绔彧闇€瑕侀厤缃畆pc.protocol.netty.ssl.client
+			 -->
+			<property name="enablessl" value="false" />
+<!--			<property name="enabledCipherSuites" value="SSL_DH_anon_WITH_RC4_128_MD5"  >-->
+<!--				<editor class="org.frameworkset.spi.assemble.StringArrayEditor"/>-->
+<!--			</property>-->
+				<!-- 涓嬭堪鍙傛暟涓嶈閰嶇疆  -->
+<!--			<property name="enabledProtocols" value="TLS" >-->
+<!--				<editor class="org.frameworkset.spi.assemble.StringArrayEditor"/>-->
+<!--			</property>-->
+			<property name="needClientAuth" value="true" />
+			<property name="wantClientAuth" value="true" />
+			
+			<!-- ssl閰嶇疆鍙傛暟缁撴潫 -->
+		</map>
+	</property>
+	
+		<!--  
+			netty妗嗘灦鐨剆sl client鍙傛暟
+		-->
+	<property name="rpc.protocol.netty.ssl.client">
+		<map>
+			<!-- 杩炴帴瓒呮椂鏃堕棿锛岄粯璁ゅ€?0绉掞紝鍗曚綅锛氱 -->
+			<property name="keyStore" value="keystore/client.ks" />
+				<!-- 
+					鏈嶅姟鍣ㄧ粦瀹氱鍙?				 -->
+			<property name="keyStorePassword" value="123456" />
+				<!-- 
+					鏈嶅姟鍣ㄧ粦瀹歩p
+				 -->
+			<property name="trustStore" value="keystore/client.ts" />
+			
+			<property name="trustStorePassword" value="123456" />
+		</map>
+	</property>
+	
+	<!--  
+			netty妗嗘灦鐨剆sl server鍙傛暟
+		-->
+	<property name="rpc.protocol.netty.ssl.server">
+		<map>
+			<!-- 杩炴帴瓒呮椂鏃堕棿锛岄粯璁ゅ€?0绉掞紝鍗曚綅锛氱 -->
+			<property name="keyStore" value="keystore/server.ks" />
+				<!-- 
+					鏈嶅姟鍣ㄧ粦瀹氱鍙?				 -->
+			<property name="keyStorePassword" value="123456" />
+				<!-- 
+					鏈嶅姟鍣ㄧ粦瀹歩p
+				 -->
+			<property name="trustStore" value="keystore/server.ts" />
+			
+			<property name="trustStorePassword" value="123456" />
+		</map>
+	</property>
+</properties>

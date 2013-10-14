@@ -1,0 +1,8 @@
+﻿<properties>
+<!-- 
+		鏁版嵁搴撹繛鎺ユ睜鐩戞帶鏈嶅姟
+-->
+	<property name="pool.monitor.service" singlable="true"
+		class="com.frameworkset.common.poolman.monitor.PoolMonitorServiceImpl">
+	</property>
+</properties>

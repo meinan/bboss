@@ -1,0 +1,32 @@
+﻿<property id="dataSource" class="com.alibaba.druid.pool.DruidDataSource"
+	init-method="init"><!-- 杩欓噷涓嶉渶瑕侀厤缃甦estroy-method锛屽洜涓篵boss鎸佷箙灞傚湪jvm閫€鍑烘椂浼氳嚜鍔ㄨ皟鐢ㄦ暟鎹簮鐨刢lose鏂规硶 -->
+	<property name="driverClassName" value="oracle.jdbc.driver.OracleDriver" />
+	<property name="url" value="jdbc:oracle:thin:@//10.0.15.134:1521/orcl">
+		<!-- 濡傛灉鏁版嵁搴搖rl鏄姞瀵嗙殑锛屽垯闇€瑕侀厤缃В瀵嗙殑缂栬緫鍣?-->
+		<!--<editor clazz="com.frameworkset.common.poolman.security.DecryptEditor"/> -->
+	</property>
+	<!-- 杩炴帴鏁版嵁搴撶殑鐢ㄦ埛鍚?-->
+	<property name="username" value="SANYGCMP">
+		<!-- 濡傛灉璐﹀彿鏄姞瀵嗙殑璐﹀彿锛屽垯闇€瑕侀厤缃В瀵嗙殑缂栬緫鍣?-->
+		<!-- <editor clazz="com.frameworkset.common.poolman.security.DecryptEditor"/> -->
+	</property>
+	<!-- 杩炴帴鏁版嵁搴撶殑瀵嗙爜 -->
+	<property name="password" value="SANYGCMP">
+		<!-- 濡傛灉鍙ｄ护鏄姞瀵嗙殑鍙ｄ护锛屽垯闇€瑕侀厤缃В瀵嗙殑缂栬緫鍣?-->
+		<!-- <editor clazz="com.frameworkset.common.poolman.security.DecryptEditor"/> -->
+	</property>
+	<property name="filters" value="stat" />
+	<property name="maxActive" value="20" />
+	<property name="initialSize" value="1" />
+	<property name="maxWait" value="60000" />
+	<property name="minIdle" value="1" />
+	<property name="timeBetweenEvictionRunsMillis" value="3000" />
+	<property name="minEvictableIdleTimeMillis" value="300000" />
+	<property name="validationQuery" value="SELECT 1 from dual" />
+	<property name="testWhileIdle" value="true" />
+	<property name="testOnBorrow" value="false" />
+	<property name="testOnReturn" value="false" />
+	<property name="poolPreparedStatements" value="true" />
+	<property name="maxPoolPreparedStatementPerConnectionSize"
+		value="20" />
+</property>

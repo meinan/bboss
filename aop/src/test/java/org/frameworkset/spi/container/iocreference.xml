@@ -1,0 +1,85 @@
+﻿<!-- 
+   鏈疄渚嬭鏄庡浣曞湪ioc瀹瑰櫒涓幏鍙栧叾浠杋oc瀹瑰櫒涓畾涔夌殑缁勪欢锛屽叾浠栧鍣ㄧ被鍨嬪寘鎷細
+   org.frameworkset.spi.DefaultApplicationContext 
+   MVC瀹瑰櫒
+   org.frameworkset.spi.ApplicationContext 
+   
+   bboss ioc瀹瑰櫒璇峰弬鑰冩枃绔狅細
+   http://yin-bp.iteye.com/blog/1153798
+   
+        娑夊強鍒扮殑宸ュ巶妯″紡璇峰弬鑰冩枃绔狅細
+   http://yin-bp.iteye.com/blog/1014361
+ -->
+<properties>
+	<!-- 
+		浣跨敤宸ュ巶妯″紡锛屽畾涔変竴涓閮╫rg.frameworkset.spi.ApplicationContext绫诲瀷鐨勫鍣ㄥ璞″紩鐢紝浠ヤ究寮曠敤瀹瑰櫒涓殑缁勪欢
+	            璇ュ鍣ㄥ璞￠€氳繃鍔犺浇閰嶇疆鏂囦欢 org/frameworkset/spi/beans/testapplicationcontext.xml
+	           鍒涘缓
+	-->
+	<property name="test.outnerapplicationcontext" 
+			  factory-class="org.frameworkset.spi.ApplicationContext" 
+			  factory-method="getApplicationContext">
+		<construction>
+			<property  value="org/frameworkset/spi/beans/testapplicationcontext.xml"/>	
+		</construction>
+	</property>
+	
+	<!-- 
+		浣跨敤宸ュ巶妯″紡瀹氫箟涓€涓澶栭儴缁勪欢鐨勫紩鐢ㄧ粍浠秚est_refbean_from_outnerapplicationcontext锛?
+		浠庡閮ㄥ鍣╰est.outnerapplicationcontext涓幏鍙栧悕绉颁负rpc.restful.convertor鐨勭粍浠?
+	-->
+	<property name="test_refbean_from_outnerapplicationcontext" 
+			  factory-bean="test.outnerapplicationcontext" 
+			  factory-method="getBeanObject">
+		<construction>
+			<property  value="rpc.restful.convertor"/>	
+		</construction>
+	</property>
+	
+	
+	<!-- 
+		浣跨敤宸ュ巶妯″紡锛屽畾涔塨boss MVC绫诲瀷鐨勫鍣ㄥ璞″紩鐢紝浠ヤ究寮曠敤瀹瑰櫒涓殑缁勪欢
+	            璇ュ鍣ㄥ璞￠€氳繃MVC妗嗘灦鑷姩鍒涘缓
+	-->
+	<property name="test.mvcapplicationcontext" 
+			  factory-class="org.frameworkset.web.servlet.support.WebApplicationContextUtils" 
+			  factory-method="getWebApplicationContext"/>
+	
+	<!-- 
+		浣跨敤宸ュ巶妯″紡瀹氫箟涓€涓澶栭儴缁勪欢鐨勫紩鐢ㄧ粍浠秚est_refbean_from_mvcapplicationcontext锛屼粠MVC瀹瑰櫒涓幏鍙栧悕绉颁负deskTopMenuShorcutManager鐨勭粍浠?
+	-->
+	<property name="test_refbean_from_mvcapplicationcontext" 
+			  factory-bean="test.mvcapplicationcontext" 
+			  factory-method="getBeanObject">
+		<construction>
+			<property  value="deskTopMenuShorcutManager"/>	
+		</construction>
+	</property>
+	
+	
+	<!-- 
+		浣跨敤宸ュ巶妯″紡锛屽畾涔変竴涓閮╫rg.frameworkset.spi.DefaultApplicationContext 绫诲瀷鐨勫鍣ㄥ璞★紝浠ヤ究寮曠敤鏀瑰鍣ㄤ腑鐨勭粍浠?
+	            璇ュ鍣ㄥ璞￠€氳繃鍔犺浇閰嶇疆鏂囦欢 org/frameworkset/spi/beans/testapplicationcontext.xml
+	           鍒涘缓
+	-->
+	<property name="test.outnerdefaultapplicationcontext" 
+			  factory-class="org.frameworkset.spi.DefaultApplicationContext" 
+			  factory-method="getApplicationContext">
+		<construction>
+			<property  value="org/frameworkset/spi/beans/testapplicationcontext.xml"/>	
+		</construction>
+	</property>
+	
+	<!-- 
+		浣跨敤宸ュ巶妯″紡瀹氫箟涓€涓澶栭儴缁勪欢鐨勫紩鐢ㄧ粍浠秚est_refbean_from_outnerdefaultapplicationcontext锛?
+		浠庡閮ㄥ鍣╰est.outnerdefaultapplicationcontext涓幏鍙栧悕绉颁负rpc.restful.convertor鐨勭粍浠?
+	-->
+	<property name="test_refbean_from_outnerdefaultapplicationcontext" 
+			  factory-bean="test.outnerdefaultapplicationcontext" 
+			  factory-method="getBeanObject">
+		<construction>
+			<property  value="rpc.restful.convertor"/>	
+		</construction>
+	</property>
+	
+</properties>
