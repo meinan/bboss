@@ -17,6 +17,8 @@
         <module>event</module>
         <module>mvc</module>
         <module>taglib</module>
+        <module>hession</module>
+        <module>upload</module>
 	</modules>
 	<repositories>
 		<repository>

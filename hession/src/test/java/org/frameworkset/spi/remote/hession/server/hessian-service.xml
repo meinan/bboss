@@ -1,0 +1,68 @@
+﻿	
+<properties>
+	<description>
+		<![CDATA[
+			bboss hessian鏈嶅姟鍙戝竷瀹炰緥.
+			hessian灞炴€ц鏄庯細
+				  hessian:api 鏈嶅姟鎺ュ彛
+				  hessian:serializable xml|bin 搴忓垪鍖栫被鍨?榛樿涓篵in
+				  hessian:debug default false used by serializable="bin".
+				  hessian:sendCollectionType used by serializable="bin". default true Set whether to send the Java collection type for each serialized collection.
+				  hessian:serializerFactory used by serializable="bin".default com.caucho.hessian.io.SerializerFactory
+			鏈嶅姟閮ㄧ讲璇存槑锛?
+				鍦╳eb.xml鏂囦欢涓厤缃瓾essionDispatchServlet
+				<servlet>
+					<servlet-name>HessionRemote</servlet-name>
+					<servlet-class>org.frameworkset.spi.remote.hession.HessionDispatchServlet</servlet-class>
+					
+				</servlet>
+				<servlet-mapping>
+					<servlet-name>HessionRemote</servlet-name>
+					<url-pattern>/hessian</url-pattern>
+				</servlet-mapping>
+			
+			瀹㈡埛绔皟鐢ㄧず渚?
+				String url = "http://localhost:8080/context/hessian?container=bboss.hessian.mvc&containertype=mvc&service=basicservice";//鎸囧畾瀹瑰櫒鏍囪瘑鍜屽鍣ㄧ被鍨嬪強鏈嶅姟鏍囪瘑
+				url = "http://localhost:8080/context/hessian?service=basicservice";//榛樿鑾峰彇mvc瀹瑰櫒涓殑缁勪欢
+				url鍙傛暟璇存槑锛?
+				container锛氭湇鍔＄ioc瀹瑰櫒鏍囪瘑锛屼竴鑸槸ioc瀹瑰櫒鏍箈ml鏂囦欢瀵瑰簲鐨勭被鍖呰矾寰勶紝
+						   渚嬪锛歰rg/frameworkset/spi/remote/hession/server/hessian-service.xml
+			               mvc绫诲瀷瀹瑰櫒鍊间负bboss.hessian.mvc(涔熸槸container鐨勯粯璁ゅ€?
+				containertype锛?瀹瑰櫒绫诲瀷 
+					mvc mvc瀹瑰櫒
+					simple 瀵瑰簲ioc瀹瑰櫒绫诲瀷涓篋efaultApplicationContext 
+				    鍏朵粬鍊?瀵瑰簲ioc瀹瑰櫒绫诲瀷涓篈pplicationContext
+				service锛氭湇鍔℃爣璇嗭紝ioc缁勪欢鐨勫悕绉?
+				鍒涘缓bin妯″紡瀹㈡埛绔唬鐞?
+			    HessianProxyFactory factory = new HessianProxyFactory();
+			    ServiceInf basic = (ServiceInf) factory.create(org.frameworkset.spi.remote.hession.server.ServiceInf.class, url);
+			
+			    System.out.println("Hello: " + basic.hello("John"));
+				鍒涘缓xml妯″紡瀹㈡埛绔唬鐞?
+			    BurlapProxyFactory factory = new BurlapProxyFactory();
+			    ServiceInf basic = (ServiceInf) factory.create(org.frameworkset.spi.remote.hession.server.ServiceInf.class, url);
+			
+			    System.out.println("Hello: " + basic.hello("John"));
+				
+			    閫氳繃bboss-ioc閰嶇疆鍜岃幏鍙栧鎴风	
+				<property name="clientservice" factory-class="com.caucho.hessian.client.HessianProxyFactory" factory-method="create">
+					<construction>
+						<property value="org.frameworkset.spi.remote.hession.server.ServiceInf"/>		
+						<property value="http://localhost:8080/context/hessian?service=basicservice"/>	
+					</construction>
+				</property>	
+			    DefaultApplicationContext context = DefaultApplicationContext.getApplicationContext("org/frameworkset/spi/remote/hession/client/hessian-client.xml");
+				//鑾峰彇瀹㈡埛绔粍浠跺疄渚?
+				ServiceInf basic = context.getTBeanObject("clientservice", ServiceInf.class);
+				]]>
+	</description>
+	<!--bboss绠＄悊鐨勭粍浠跺嵆hessian鏈嶅姟-->
+	<property name="basicservice" class="org.frameworkset.spi.remote.hession.server.BasicService"/>
+	<!--鍙互鎸囧畾涓撴湁鐨刪essian缁勪欢鏈嶅姟灞炴€?->	
+	<property name="basicservice_mutx" class="org.frameworkset.spi.remote.hession.server.BasicService"
+		hessian:api="org.frameworkset.spi.remote.hession.server.ServiceInf"
+	    hessian:serializable="bin"
+	    hessian:debug="true"
+	    hessian:sendCollectionType="true"
+	    hessian:serializerFactory="com.caucho.hessian.io.SerializerFactory"/>	
+</properties>
