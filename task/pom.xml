@@ -16,12 +16,6 @@
     <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
   </properties>
   <dependencies>
-  		<dependency>
-			<groupId>bboss</groupId>
-			<artifactId>aop</artifactId>
-			<version>1.0</version>
-			<scope>compile</scope>
-		</dependency>
 		<dependency>
 			<groupId>bboss</groupId>
 			<artifactId>persistent</artifactId>
